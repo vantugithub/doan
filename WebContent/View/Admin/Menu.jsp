@@ -25,7 +25,7 @@
             </a>
           </li>
           <li>
-            <a href="/Laptop/admin">
+            <a href="/Laptop/admin/users?page=1">
               <i class="tim-icons icon-single-02"></i>
               <p>User management</p>
             </a>

@@ -172,7 +172,6 @@ if(session.getAttribute("USERMODEL")!=null) {
 						<li class="page-item"><a class="page-link"
 							href="<%=request.getContextPath()%>/admin/products?page=${numberPage+1}">Next</a></li>
 					</c:if>
-					
 				</ul>
 
 			</div>
@@ -186,10 +185,6 @@ if(session.getAttribute("USERMODEL")!=null) {
 		</div>
 	</div>
 
-
-
-	<jsp:include page="Header.jsp" />
-	
 	
 	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

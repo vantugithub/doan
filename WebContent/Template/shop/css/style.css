@@ -19,6 +19,10 @@ body {
   background: #fff;
 }
 
+.fixx {
+	background-size: 100% 100%;
+}
+
 #page {
   position: relative;
   overflow-x: hidden;
@@ -305,7 +309,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 #fh5co-hero .flexslider .slides li {
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center center;
   min-height: 700px;
 }

@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>Edit User</title>
+<title>Users</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -78,35 +78,71 @@ if(session.getAttribute("USERMODEL")!=null) {
 						<div class="card ">
 							
 							<div class="card-header">
-							<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">Create category</button>
-							</div>
+							<label>Role<select id="role" onchange="changeList('-1','-1')" name="dataTable_length" aria-controls="dataTable" class="btn">
 							
+							<c:forEach items="${listRole}" var="listRole">
+				              <option value="${listRole.roleName}" > ${listRole.roleName} </option>
+				              </c:forEach>
+				               </select>
+				              
+				               </label>
+				              
+							</div> 
+							
+              
 							<div class="card-header">
-								<h4 class="card-title">List of products</h4>
+								<h4 class="card-title">List of users</h4>
 							</div>
 							
-							<div class="card-body">
-							
+							<div class="card-body" id = "users">
 								<div class="table-responsive">
-									<table class="table tablesorter " id="">
+									<table class="table tablesorter">
 									<thead class=" text-primary">
 											<tr>
 												<th>Id</th>
-												<th>Name</th>
-												<th>Delete</th>
+												<th>User Name</th>
+												<th>Full Name</th>
+												<th>Status</th>
+												<th>Edit </th>
 											</tr>
 										</thead>
 										<tbody>
 										<c:forEach items="${list}" var="lis">
 											<tr>
 												<td>${lis.id}</td>
-												<td>${lis.name}</td>
-												<td><a href="/Laptop/admin/deletecategory?id=${lis.id}"><i class="tim-icons icon-gift-2" ></i></a></td>
+												<td>${lis.username}</td>
+												<td>${lis.fullName}</td>
+												<td>${lis.active}</td>
+												<td><a href="<%=request.getContextPath()%>/admin/user?id=${lis.id}"><i class="tim-icons icon-gift-2" ></i></a></td>
+											</tr>
 											</tr>
 										</c:forEach>
 										</tbody>
 									</table>
 								</div>
+								
+								<ul class="pagination">
+					<c:if test="${numberPage == 1}">
+
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','1')">1</a></li>
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','2')">2</a></li>
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','${numberPage+1}')">Next</a></li>
+					</c:if>
+
+					<c:if test="${numberPage == maxPageId}">
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','${numberPage-1}')">Prev</a></li>
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','1')">1</a></li>
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','2')">2</a></li>
+					</c:if>
+
+					<c:if test="${numberPage > 1 && numberPage < maxPageId}">
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','${numberPage-1}')">Prev</a></li>
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','1')">1</a></li>
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','2')">2</a></li>
+						<li class="page-item"><a class="page-link" onclick="changeList('${role}','${numberPage+1}')">Next</a></li>
+					</c:if>
+								</ul>
+				
 							</div>
 						</div>
 					</div>
@@ -119,7 +155,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 	</div>
 
 
-	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<%-- 	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -145,10 +181,10 @@ if(session.getAttribute("USERMODEL")!=null) {
       </div>
     </div>
   </div>
-</div>
+</div> --%>
 
 
-<div class="modal" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<%-- <div class="modal" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -168,9 +204,38 @@ if(session.getAttribute("USERMODEL")!=null) {
       </div>
     </div>
   </div>
-</div>
+</div> --%>
 
+	<script type="text/javascript">
+		
+		function changeList(role,page) {
+				var e = document.getElementById("role");
+				var value = e.options[e.selectedIndex].value;
+				var xhttp;
+				var url = "";
+				if(role=='-1' && page=='-1'){
+					url = "/Laptop/admin/users?role="+value+"&page=1";
+				}
+				else{
+					url = "/Laptop/admin/users?role="+role+"&page="+page;
+				}
+				if (window.XMLHttpRequest) {
+					xhttp = new XMLHttpRequest();
+				} else {
+					xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
 
+				xhttp.onreadystatechange = function() {
+					if (xhttp.readyState == 4) {
+						var data = xhttp.responseText;
+						document.getElementById("users").innerHTML = data;
+					}
+				}
+				xhttp.open("GET", url, true);
+				xhttp.send();
+		}
+	
+		</script>
 	
 	
 	<script
@@ -195,6 +260,10 @@ if(session.getAttribute("USERMODEL")!=null) {
 		src="<%=request.getContextPath()%>/Template/Admin/js/black-dashboard.min.js?v=1.0.0"></script>
 	<!-- Black Dashboard DEMO methods, don't include it in your project! -->
 	<script src="<%=request.getContextPath()%>/Template/Admin/demo/demo.js"></script>
+	
+
+		
+		
 	<script>
     $(document).ready(function() {
       $().ready(function() {

@@ -9,37 +9,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.ProductDAO;
+import DAO.UserDAO;
 import DB.DBConnection;
 
-@WebServlet("/admin/unlockproduct")
-public class UpdateStatusOfProduct extends HttpServlet {
-	
-	private ProductDAO dao;
-	
+@WebServlet("/admin/UpdateActiveOfUser")
+public class UpdateActiveOfUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+	private UserDAO dao;
 	
-    public UpdateStatusOfProduct() {
+    public UpdateActiveOfUser() {
         super();
     }
 
 	@SuppressWarnings("static-access")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idStr = request.getParameter("id");
-		String status = request.getParameter("status");
-		long id = Long.parseLong(idStr);
+		String status = request.getParameter("active");
+		int id = Integer.parseInt(idStr);
 		Connection conn = DBConnection.creatConnection();
 		if(status.equals("true"))
 		{
-			dao.updateStatusOfProduct(conn, id, false);
+			dao.updateStatusOfUser(conn, id, false);
 		}
 		else 
 		{
-			dao.updateStatusOfProduct(conn, id, true);
+			dao.updateStatusOfUser(conn, id, true);
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/admin/detailproduct?id="+idStr);
+		response.sendRedirect(request.getContextPath()+"/admin/user?id="+idStr);
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 
 }

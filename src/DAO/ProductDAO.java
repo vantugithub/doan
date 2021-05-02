@@ -59,7 +59,7 @@ public class ProductDAO {
 	
 	public static List<Product> getAllOfProducts(Connection conn){
 		List<Product> list = new ArrayList<Product>();
-		String sql = "SELECT * FROM products";
+		String sql = "SELECT * FROM products WHERE Status = 1";
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -251,6 +251,38 @@ public class ProductDAO {
 		}
 		return 0;
 	}
+	
+	
+	public static Product  getProductByName(Connection conn,String nameOfProduct){
+		Product product  = new Product();
+		String sql = "SELECT * FROM products WHERE Name = ?";
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setNString(1, nameOfProduct);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				product.setId(rs.getLong("Id"));
+				product.setName(rs.getString("Name"));
+				product.setDescription(rs.getString("Description"));
+				product.setContent(rs.getString("Description"));
+				product.setPrice(rs.getLong("Price"));
+				product.setPromotionPrice(rs.getLong("PromotionPrice"));
+				product.setImage(rs.getString("Image"));
+				product.setImageList(rs.getString("ImageList"));
+				product.setWarranty( rs.getInt("Warranty"));
+				product.setStatus(rs.getBoolean("Status"));
+			}
+				ps.close();
+				rs.close();
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return  product;
+	}
+	
 	
 	
 }

@@ -58,7 +58,7 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a></li>
+                  <li class="nav-link"><a href="<%=request.getContextPath()%>/admin/profile" class="nav-item dropdown-item">Profile</a></li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-link"><a href="/Laptop/Logout" class="nav-item dropdown-item">Log out</a></li>
                 </ul>
@@ -68,6 +68,7 @@
           </div>
         </div>
       </nav>
+      <form action="/admin/laptop" method= "GET">
       <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -80,5 +81,6 @@
           </div>
         </div>
       </div>
+      </form>
 </body>
 </html>
