@@ -95,7 +95,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 							</div>
 							
 							<div class="card-body" id = "users">
-								<div class="table-responsive">
+								<div class="">
 									<table class="table tablesorter">
 									<thead class=" text-primary">
 											<tr>

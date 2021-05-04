@@ -61,7 +61,7 @@ public class Login extends HttpServlet {
 					response.sendRedirect(request.getContextPath()+"/admin");
 				}
 				else if(nameRole.equals("ROLE_EMPLOYEE")) {
-					response.sendRedirect(request.getContextPath()+"/employee");
+					response.sendRedirect(request.getContextPath()+"/seller");
 				}
 				else if(nameRole.equals("ROLE_USER")) {
 					response.sendRedirect(request.getContextPath()+"/");
