@@ -30,6 +30,8 @@ public class DetailProduct extends HttpServlet {
 		Connection conn = DBConnection.creatConnection();
 		Product product = dao.getProductByName(conn, nameOfProduct);
 		request.setAttribute("product", product);
+		request.setAttribute("nTagInDatabase","\n");
+		request.setAttribute("brTagInHtml","<br/>");
 		RequestDispatcher rd = request.getRequestDispatcher("/View/Web/Single.jsp");
 		rd.forward(request, response);
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+    <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +36,6 @@
 <div class="fh5co-loader"></div>
 	<div id="page">
 	
-	
-	
-	
 	<div id="fh5co-product">
 		<div class="container">
 			<div class="row">
@@ -61,7 +59,7 @@
 					</div>
 					<div class="row animate-box">
 						<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-							<h2>Hauteville Rocking Chair</h2>
+							<h2>${product.name}</h2>
 							<p>
 								<a href="#" class="btn btn-primary btn-outline btn-lg">Add to Cart</a>
 							</p>
@@ -83,12 +81,18 @@
 
 							<div class="fh5co-tab-content tab-content active" data-tab-content="1">
 								<div class="col-md-10 col-md-offset-1">
-									<span class="price">SRP: $350</span>
-									<h2>Hauteville Rocking Chair</h2>
+									<span class="price">SRP: $${product.price}</span>
+									<h2>${product.name}</h2>
 									
-									<p>${product.description} </p>
+									<p>
+									<c:set var="result"
+										value="${fn:replace(product.description , nTagInDatabase,brTagInHtml)}" />
+									<p>
+										<c:out value="${result}" escapeXml="false" />
+									</p>
+									</p>
 
-									<div class="row">
+									<!-- <div class="row">
 										<div class="col-md-6">
 											<h2 class="uppercase">Keep it simple</h2>
 											<p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
@@ -97,7 +101,7 @@
 											<h2 class="uppercase">Less is more</h2>
 											<p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
 										</div>
-									</div>
+									</div> -->
 
 								</div>
 							</div>

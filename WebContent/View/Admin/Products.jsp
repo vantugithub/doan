@@ -117,7 +117,8 @@ if(session.getAttribute("USERMODEL")!=null) {
 												<th>Warranty</th>
 												<th>Price</th>
 												<th>Status</th>
-												<th>Edit </th>
+												<th>Edit</th>
+												<th>Description</th>
 											</tr>
 										</thead>
 										
@@ -137,7 +138,13 @@ if(session.getAttribute("USERMODEL")!=null) {
 																<i class="tim-icons icon-simple-remove"></i>
 												</c:if>
 												</td>
-												<td><a href="/Laptop/admin/detailproduct?id=${lis.id}"><i class="tim-icons icon-gift-2" ></i></a></td>
+												
+												<td>
+													<a href="/Laptop/admin/detailproduct?id=${lis.id}"><i class="tim-icons icon-gift-2" ></i></a>
+												</td>
+												<td>
+													<a href="/Laptop/admin/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
+												</td>
 											</tr>
 											</c:forEach>
 										

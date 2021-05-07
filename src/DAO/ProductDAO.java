@@ -282,7 +282,52 @@ public class ProductDAO {
 		}
 		return  product;
 	}
+	public static Product findProductByIdd(Connection conn,long id){
+		Product product = new Product();
+		String sql = "SELECT * FROM products WHERE Id = ?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				product.setId(rs.getLong("Id"));
+				product.setName(rs.getString("Name"));
+				product.setDescription(rs.getString("Description"));
+				product.setContent(rs.getString("Content"));
+				product.setPrice(rs.getLong("Price"));
+				product.setPromotionPrice(rs.getLong("PromotionPrice"));
+				product.setImage(rs.getString("Image"));
+				product.setImageList(rs.getString("ImageList"));
+				product.setWarranty( rs.getInt("Warranty"));
+				product.setStatus(rs.getBoolean("Status"));
+				product.setDateCreated(rs.getNString("DateCreated"));
+				product.setUserCreated(rs.getString("UserCreated"));
+				product.setUserModified(rs.getString("UserModified"));
+				product.setDateModified(rs.getString("DateModified"));
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return product;
+	}
 	
+	public static void updateDescriptionOfProduct(Connection conn,Long id,String description) {
+		try {
+				String sql = "UPDATE products SET Description = ? WHERE Id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setNString(1, description);
+			ps.setLong(2, id);
+			if(ps.executeUpdate()!=0) 
+			{
+				ps.close();
+			}
+			ps.close();
+		}
+		catch (Exception e) {
+			System.out.println(e.toString());
+		}
+	}
 	
 	
 }
