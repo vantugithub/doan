@@ -71,12 +71,15 @@ public class AddToCart extends HttpServlet {
 					}
 				}
 			}
+			
 			if(temp==true) {
 				ListItem item = new ListItem();
 				item.setQuantity(1);
 				item.setProduct(product);
 				items.add(item);
+				order.setItems(items);
 			}
+			
 			httpSession.setAttribute("cart", order);
 			request.getSession().setAttribute("quantity",items.size());
 		}
