@@ -36,10 +36,14 @@ public class EditDescriptionProduct extends HttpServlet {
 
 	@SuppressWarnings("static-access")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getCharacterEncoding()==null) {
+			request.setCharacterEncoding("UTF-8");
+		}
 		Connection conn = DBConnection.creatConnection();
 		String idProduct = request.getParameter("id");
 		String description = request.getParameter("description");
-		dao.updateDescriptionOfProduct(conn, Long.parseLong(idProduct), description);
+		String content = request.getParameter("content");
+		dao.updateDescriptionAndContentOfProduct(conn, Long.parseLong(idProduct), description,content);
 		response.sendRedirect(request.getContextPath()+"/admin/products?page=1");
 	}
 

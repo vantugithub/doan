@@ -35,7 +35,6 @@
 <jsp:include page="Header.jsp"/>
 <div class="fh5co-loader"></div>
 	<div id="page">
-	
 	<div id="fh5co-product">
 		<div class="container">
 			<div class="row">
@@ -50,18 +49,18 @@
 						</div>
 						
 						<div class="item">
-							<div class="active text-center">
+							<!-- <div class="active text-center">
 								<figure>
 									<img src="Template/shop/images/product-single-5.jpg" alt="user">
 								</figure>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<div class="row animate-box">
 						<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 							<h2>${product.name}</h2>
 							<p>
-								<a href="#" class="btn btn-primary btn-outline btn-lg">Add to Cart</a>
+								<a href="/Laptop/add-to-cart?id=${product.id}&quantity=1" class="btn btn-primary btn-outline btn-lg">Add to Cart</a>
 							</p>
 						</div>
 					</div>
@@ -73,7 +72,7 @@
 						<ul class="fh5co-tab-nav">
 							<li class="active"><a href="#" data-tab="1"><span class="icon visible-xs"><i class="icon-file"></i></span><span class="hidden-xs">Product Details</span></a></li>
 							<li><a href="#" data-tab="2"><span class="icon visible-xs"><i class="icon-bar-graph"></i></span><span class="hidden-xs">Specification</span></a></li>
-							<li><a href="#" data-tab="3"><span class="icon visible-xs"><i class="icon-star"></i></span><span class="hidden-xs">Feedback &amp; Ratings</span></a></li>
+							<!-- <li><a href="#" data-tab="3"><span class="icon visible-xs"><i class="icon-star"></i></span><span class="hidden-xs">Feedback &amp; Ratings</span></a></li> -->
 						</ul>
 
 						<!-- Tabs -->
@@ -88,8 +87,8 @@
 									<c:set var="result"
 										value="${fn:replace(product.description , nTagInDatabase,brTagInHtml)}" />
 									<p>
+									<p>
 										<c:out value="${result}" escapeXml="false" />
-									</p>
 									</p>
 
 									<!-- <div class="row">
@@ -110,21 +109,19 @@
 								<div class="col-md-10 col-md-offset-1">
 									<h3>Product Specification</h3>
 									<ul>
-										<li>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius</li>
-										<li>adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi</li>
-										<li>Veritatis tenetur odio delectus quibusdam officiis est.</li>
-										<li>Magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</li>
-									</ul>
-									<ul>
-										<li>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius</li>
-										<li>adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi</li>
-										<li>Veritatis tenetur odio delectus quibusdam officiis est.</li>
-										<li>Magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</li>
+									<li>
+									<c:set var="result"
+										value="${fn:replace(product.content , nTagInDatabase,brTagInHtml)}" />
+									</li>
+									<li>
+										<c:out value="${result}" escapeXml="false" />
+									</li>
+									
 									</ul>
 								</div>
 							</div>
 
-							<div class="fh5co-tab-content tab-content" data-tab-content="3">
+							<!-- <div class="fh5co-tab-content tab-content" data-tab-content="3">
 								<div class="col-md-10 col-md-offset-1">
 									<h3>Happy Buyers</h3>
 									<div class="feed">
@@ -156,7 +153,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 
 					</div>

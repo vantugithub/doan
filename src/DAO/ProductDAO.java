@@ -67,7 +67,7 @@ public class ProductDAO {
 				Product product = new Product();
 				product.setId(rs.getLong("Id"));
 				product.setName(rs.getString("Name"));
-				product.setDescription(rs.getString("Description"));
+				product.setDescription(rs.getString("Content"));
 				product.setContent(rs.getString("Description"));
 				product.setPrice(rs.getLong("Price"));
 				product.setPromotionPrice(rs.getLong("PromotionPrice"));
@@ -98,7 +98,7 @@ public class ProductDAO {
 				product.setId(rs.getLong("Id"));
 				product.setName(rs.getString("Name"));
 				product.setDescription(rs.getString("Description"));
-				product.setContent(rs.getString("Description"));
+				product.setContent(rs.getString("Content"));
 				product.setPrice(rs.getLong("Price"));
 				product.setPromotionPrice(rs.getLong("PromotionPrice"));
 				product.setImage(rs.getString("Image"));
@@ -192,7 +192,7 @@ public class ProductDAO {
 				product.setId(rs.getLong("Id"));
 				product.setName(rs.getString("Name"));
 				product.setDescription(rs.getString("Description"));
-				product.setContent(rs.getString("Description"));
+				product.setContent(rs.getString("Content"));
 				product.setPrice(rs.getLong("Price"));
 				product.setPromotionPrice(rs.getLong("PromotionPrice"));
 				product.setImage(rs.getString("Image"));
@@ -265,7 +265,7 @@ public class ProductDAO {
 				product.setId(rs.getLong("Id"));
 				product.setName(rs.getString("Name"));
 				product.setDescription(rs.getString("Description"));
-				product.setContent(rs.getString("Description"));
+				product.setContent(rs.getString("Content"));
 				product.setPrice(rs.getLong("Price"));
 				product.setPromotionPrice(rs.getLong("PromotionPrice"));
 				product.setImage(rs.getString("Image"));
@@ -312,12 +312,13 @@ public class ProductDAO {
 		return product;
 	}
 	
-	public static void updateDescriptionOfProduct(Connection conn,Long id,String description) {
+	public static void updateDescriptionAndContentOfProduct(Connection conn,Long id,String description,String content) {
 		try {
-				String sql = "UPDATE products SET Description = ? WHERE Id = ?";
+				String sql = "UPDATE products SET Description = ?, Content = ? WHERE Id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setNString(1, description);
-			ps.setLong(2, id);
+			ps.setNString(2, content);
+			ps.setLong(3, id);
 			if(ps.executeUpdate()!=0) 
 			{
 				ps.close();
