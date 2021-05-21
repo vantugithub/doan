@@ -60,7 +60,7 @@
 						<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 							<h2>${product.name}</h2>
 							<p>
-								<a href="/Laptop/add-to-cart?id=${product.id}&quantity=1" class="btn btn-primary btn-outline btn-lg">Add to Cart</a>
+								<a onclick="addToCart(${product.id})" class="btn btn-primary btn-outline btn-lg">Add to Cart</a>
 							</p>
 						</div>
 					</div>
@@ -163,7 +163,29 @@
 	</div>
 	<jsp:include page="Footer.jsp"/>
 
+	<script type="text/javascript">
+		
+		function addToCart(idProduct) {
+				var xhttp;
+				var url = "/Laptop/add-to-cart?id="+idProduct+"&quantity=1";
+				
+				if (window.XMLHttpRequest) {
+					xhttp = new XMLHttpRequest();
+				} else {
+					xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
 
+				xhttp.onreadystatechange = function() {
+					if (xhttp.readyState == 4) {
+						var data = xhttp.responseText;
+						document.getElementById("quantity").innerHTML = data; 
+					}
+				}
+				xhttp.open("GET", url, true);
+				xhttp.send();
+		}
+	
+		</script>
 	
 	</div>
 	

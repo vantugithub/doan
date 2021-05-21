@@ -19,17 +19,17 @@
 				
 				<div class="col-md-4 col-xs-4 text-center menu-1">
 					<ul>
-						<li><a href="about.html">About</a></li>
+						<li><a href="#">About</a></li>
 						<li class="has-dropdown">
-							<a href="services.html">Services</a>
+							<a href="#">Laptop</a>
 							<ul class="dropdown">
-								<li><a href="#">Web Design</a></li>
-								<li><a href="#">eCommerce</a></li>
-								<li><a href="#">Branding</a></li>
-								<li><a href="#">API</a></li>
+							<c:forEach var="list" items="${listCategory}">
+							<li><a href="<%=request.getContextPath()%>/Brands?brand=${list.name}">${list.name}</a></li>
+							</c:forEach>
+							
 							</ul>
 						</li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="#">Contact</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 col-xs-4 text-right hidden-xs menu-2">
@@ -42,7 +42,10 @@
 						      </span>
 						    </div>
 						</li>
-						<li class="shopping-cart"><a href="/Laptop/Cart" class="cart"><span><small>0</small><i class="icon-shopping-cart"></i></span></a></li>
+						<li class="shopping-cart"><a href="/Laptop/Cart" class="cart"><span id="quantity">
+						<c:if test="${quantity != null}"><small>${quantity}</small></c:if>
+						
+						<i class="icon-shopping-cart"></i></span></a></li>
 					</ul>
 				</div>
 				

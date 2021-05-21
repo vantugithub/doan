@@ -17,28 +17,25 @@ import DAO.CategoryDAO;
 import DAO.ProductDAO;
 import DB.DBConnection;
 
-@WebServlet("/lap")
-public class DetailProduct extends HttpServlet {
+@WebServlet("/Brands")
+public class ProductsByModels extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+       
 	private ProductDAO dao;
 	private CategoryDAO categoryDAO;
-    public DetailProduct() {
+    public ProductsByModels() {
         super();
     }
 
 	@SuppressWarnings("static-access")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nameOfProduct = request.getParameter("name");
-		
+		String brand = request.getParameter("brand");
 		Connection conn = DBConnection.creatConnection();
-		 List<Category> listCategory = categoryDAO.getAllOfCategory(conn);
-			request.setAttribute("listCategory", listCategory);
-		Product product = dao.getProductByName(conn, nameOfProduct);
-		request.setAttribute("product", product);
-		request.setAttribute("nTagInDatabase","\n");
-		request.setAttribute("brTagInHtml","<br/>");
-		RequestDispatcher rd = request.getRequestDispatcher("/View/Web/Single.jsp");
+		List<Product> list = dao.getAllProductsByBrands(conn, brand);
+		List<Category> listCategory = categoryDAO.getAllOfCategory(conn);
+		request.setAttribute("listCategory", listCategory);
+		request.setAttribute("list", list);
+		RequestDispatcher rd  = request.getRequestDispatcher("/View/Web/ProductsByModel.jsp");
 		rd.forward(request, response);
 	}
 

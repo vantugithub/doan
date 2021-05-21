@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -83,6 +84,8 @@ public class AddToCart extends HttpServlet {
 			httpSession.setAttribute("cart", order);
 			request.getSession().setAttribute("quantity",items.size());
 		}
+		RequestDispatcher rd  = request.getRequestDispatcher("/View/Web/Quantity.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

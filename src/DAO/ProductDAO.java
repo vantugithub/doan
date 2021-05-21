@@ -331,4 +331,36 @@ public class ProductDAO {
 	}
 	
 	
+	
+	public static List<Product> getAllProductsByBrands(Connection conn,String catalogStr){
+		List<Product> list = new ArrayList<Product>();
+		String sql = "Select * FROM products WHERE products.CatalogId in (SELECT catalogs.Id FROM catalogs WHERE catalogs.Name = ? ) and products.Status = 1";
+		try {
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, catalogStr);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getLong("Id"));
+				product.setName(rs.getString("Name"));
+				product.setDescription(rs.getString("Content"));
+				product.setContent(rs.getString("Description"));
+				product.setPrice(rs.getLong("Price"));
+				product.setPromotionPrice(rs.getLong("PromotionPrice"));
+				product.setImage(rs.getString("Image"));
+				product.setImageList(rs.getString("ImageList"));
+				product.setWarranty( rs.getInt("Warranty"));
+				product.setStatus(rs.getBoolean("Status"));
+				list.add(product);
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
 }
