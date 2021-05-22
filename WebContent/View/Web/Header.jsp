@@ -1,3 +1,5 @@
+<%@page import="BEAN.Role"%>
+<%@page import="BEAN.MyUser"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
@@ -8,6 +10,7 @@
 <title></title>
 </head>
 <body>
+
 <nav class="fh5co-nav" role="navigation">
 		<div class="container">
 			<div class="row">
@@ -51,7 +54,7 @@
 				
 				<c:if test="${not empty USERMODEL }">
 				<div class="text-right hidden-xs menu-2">
-					<div><a  href="index.html">${USERMODEL.fullName}</a></div>
+					<div><a  href="/Laptop/profile">${USERMODEL.fullName}</a></div>
 				</div>
 				<div class="text-right hidden-xs menu-2">
 					<div><a  href="/Laptop/Logout">Logout</a></div>

@@ -50,17 +50,24 @@
 				<div class="col-md-4 text-center animate-box">
 					<div class="product">
 					<a href="<%=request.getContextPath()%>/lap?name=${lis.name}">
-						<img class="product-grid" src="<%=request.getContextPath()%>/image/${lis.image}">
+					<div class="product-grid" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">
+							
+						</div>
+					</a>
+					
+					
+					<%-- <a href="<%=request.getContextPath()%>/lap?name=${lis.name}"> --%>
+						<%-- <img class="product-grid" src="<%=request.getContextPath()%>/image/${lis.image}">
 							<!-- <div class="inner">
 								<p>
 									<a href="single.html" class="icon"><i class="icon-shopping-cart"></i></a>
 									<a href="single.html" class="icon"><i class="icon-eye"></i></a>
 								</p>
 							</div> -->
-						</img>
-					</a>
+						</img> --%>
+					<!-- </a> -->
 						<div class="desc">
-							<h3><a href="single.html">${lis.name}</a></h3>
+							<h3><a href="<%=request.getContextPath()%>/lap?name=${lis.name}">${lis.name}</a></h3>
 							<span class="price">$${lis.price}</span>
 						</div>
 					</div>

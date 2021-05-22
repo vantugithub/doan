@@ -12,6 +12,29 @@ import BEAN.Role;
 import Service.DecodeAndDecrypt;
 
 public class UserDAO {
+	
+	public static MyUser getProfileUser(Connection conn,int id){
+		String sql = "SELECT * FROM users WHERE iduser = ? ";
+		MyUser myUser = new MyUser();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				myUser.setId(rs.getInt("iduser"));
+				myUser.setFullName(rs.getNString("fullname"));
+				myUser.setAddress(rs.getNString("address"));
+				myUser.setPhone(rs.getNString("phone"));
+				myUser.setUsername(rs.getNString("username"));
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return myUser;
+	}
+	
+	
 	public static List<MyUser> getAllOfUsers(Connection conn,String role,int start,int count)
 	{
 		List<MyUser> list = new ArrayList<MyUser>();
