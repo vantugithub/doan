@@ -32,7 +32,7 @@
 
 	<link rel="stylesheet" href="Template/Cart/css.css">
 </head>
-<body>
+<body class="">
 <%
 response.setHeader("Cache-Control","no-cache");
 response.setHeader("Cache-Control","no-store");
@@ -41,6 +41,7 @@ response.setDateHeader ("Expires", 0);
 
 if(session.getAttribute("USERMODEL")==null)
     response.sendRedirect("/Laptop/Login");
+
 if(session.getAttribute("USERMODEL")!=null) {
 	MyUser myUser =(MyUser) session.getAttribute("USERMODEL");
 	Role role = myUser.getRole();
@@ -83,12 +84,13 @@ if(session.getAttribute("USERMODEL")!=null) {
 						<!-- Tabs -->
 						<div class="fh5co-tab-content-wrap">
 
-							<div class="fh5co-tab-content tab-content active" data-tab-content="1">
+							<div  class="fh5co-tab-content tab-content active" data-tab-content="1">
 									
 									
-					<div class="col-md-5 col-md-push-1 animate-box">
+					<div id="information" class="col-md-5 col-md-push-1 animate-box">
 					
 					<div class="fh5co-contact-info">
+					
 						<h3>Your Information</h3>
 						<ul>
 							<li class="address">${myUser.address}</li>
@@ -97,15 +99,18 @@ if(session.getAttribute("USERMODEL")!=null) {
 							<li class="url"><a href="#">${myUser.fullName}</a></li>
 						</ul>
 						<div class="form-group">
+						
 							<input type="submit" value="Change password" class="btn btn-danger">
 						</div>
+						
 					</div>
 
 				</div>
 					
 					<div class="col-md-6 animate-box">
+					
 <!-- 					<h3>Get In Touch</h3> -->
-					<form action="#" method="POST">
+					<form>
 						
 						<div class="row form-group">
 							<div class="col-md-12">
@@ -134,7 +139,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 							</div>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="Update information" class="btn btn-primary">
+							<input type="button" onclick="updateUser()" value="Update information" class="btn btn-primary">
 						</div>
 
 					</form>
@@ -170,9 +175,12 @@ if(session.getAttribute("USERMODEL")!=null) {
 	</div>
 	
 	<script type="text/javascript">
-		function deleteProduct(idProduct) {
+		function updateUser() {
 				var xhttp;
-				var url = "/Laptop/deleteproduct?idProduct="+idProduct;
+				var fullname = document.getElementById("fullname").value;
+				var address = document.getElementById("address").value;
+				var phone = document.getElementById("phone").value;
+				var url = "/Laptop/profile/update?fullname="+fullname+"&address="+address+"&phone="+phone;
 				
 				if (window.XMLHttpRequest) {
 					xhttp = new XMLHttpRequest();
@@ -183,10 +191,10 @@ if(session.getAttribute("USERMODEL")!=null) {
 				xhttp.onreadystatechange = function() {
 					if (xhttp.readyState == 4) {
 						var data = xhttp.responseText;
-						document.getElementById("listProduct").innerHTML = data; 
+						document.getElementById("information").innerHTML = data; 
 					}
 				}
-				xhttp.open("GET", url, true);
+				xhttp.open("POST", url, true);
 				xhttp.send();
 		}
 		</script>

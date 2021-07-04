@@ -363,4 +363,32 @@ public class ProductDAO {
 	}
 	
 	
+	public static List<Product> findProductsByName(Connection conn,String nameProduct){
+		List<Product> list = new ArrayList<Product>();
+		String sql="SELECT products.Id,products.Name,products.Price,products.Image,MATCH (Name) "
+				+ "AGAINST (?) as score FROM products WHERE products.Status = 1 MATCH(Name) "
+				+ "AGAINST (? IN NATURAL LANGUAGE MODE) > 0.1 ORDER BY score DESC";
+		try {
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, nameProduct);
+			ps.setString(2, nameProduct);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getLong("Id"));
+				product.setName(rs.getString("Name"));
+				product.setPrice(rs.getLong("Price"));
+				product.setImage(rs.getString("Image"));
+				list.add(product);
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	
 }

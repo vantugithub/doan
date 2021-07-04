@@ -39,10 +39,13 @@
 					<ul>
 						<li class="search">
 							<div class="input-group">
-						      <input type="text" placeholder="Search..">
+							<form action="/Laptop/search" method="GET">
+							 <input type="text" name="textSearch" placeholder="Search..">
 						      <span class="input-group-btn">
 						        <button class="btn btn-primary" type="button"><i class="icon-search"></i></button>
 						      </span>
+							</form>
+						     
 						    </div>
 						</li>
 						<li class="shopping-cart"><a href="/Laptop/Cart" class="cart"><span id="quantity">

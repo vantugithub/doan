@@ -70,8 +70,8 @@
                         <tr>
                             <th scope="col"> </th>
                             <th scope="col">Product</th>
-                            <th scope="col" class="text-center">Quantity</th>
-                            <th scope="col" class="text-right">Price</th>
+                            <th scope="col" id="quantity" class="text-center">Quantity</th>
+                            <th scope="col" id="price" class="text-right">Price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -137,10 +137,11 @@
 		
 		function updateCart(idProduct) {
 			var quantityProduct = document.getElementById('id='+idProduct).value;
-			
+				
 				var xhttp;
 				var url = "/Laptop/updatecart?idProduct="+idProduct+"&quantityProduct="+quantityProduct;
-				
+				var quantity = parseInt(document.getElementById("quantity"));
+				/* document.getElementById("price").innerHTML = quantity  */
 				if (window.XMLHttpRequest) {
 					xhttp = new XMLHttpRequest();
 				} else {

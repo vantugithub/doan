@@ -188,4 +188,27 @@ public class UserDAO {
 		return 0;
 	}
 	
+	
+	public static int updateProfileOfUser(Connection conn,MyUser myUser) {
+		try {
+			String sql= "UPDATE users SET fullname = ?, address = ?, phone = ? WHERE iduser = ? ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setNString(1, myUser.getFullName());
+			ps.setNString(2, myUser.getAddress());
+			ps.setNString(3, myUser.getPhone());
+			ps.setInt(4, myUser.getId());
+			if(ps.executeUpdate()!=0) 
+			{
+				ps.close();
+				return 1;
+			}
+			ps.close();
+		}
+		catch (Exception e) {
+			System.out.println(e.toString());
+			return 0;
+		}
+		return 0;
+	}
+	
 }

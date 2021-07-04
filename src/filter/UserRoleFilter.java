@@ -45,7 +45,8 @@ public class UserRoleFilter implements Filter {
         	response.sendRedirect(loginUrl);
         }
         else if(roleName.equals("ROLE_USER") && request.getServletPath().contains("admin")==false 
-        		&& request.getServletPath().contains("manager")==false) {
+        		&& request.getServletPath().contains("manager")==false && request.getServletPath().contains("profile")==false) 
+        {
         	chain.doFilter(request, response);
         }
         else {
