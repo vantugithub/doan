@@ -34,7 +34,7 @@
 <body>
 <jsp:include page="Header.jsp"/>
 <div class="fh5co-loader"></div>
-	<div id="page">
+	<div id="">
 	<div id="fh5co-product">
 		<div class="container">
 			<div class="row">

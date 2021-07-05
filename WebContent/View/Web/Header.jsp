@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title></title>
 </head>
+
 <body>
 
 <nav class="fh5co-nav" role="navigation">
@@ -39,10 +40,12 @@
 					<ul>
 						<li class="search">
 							<div class="input-group">
-							<form action="/Laptop/search" method="GET">
-							 <input type="text" name="textSearch" placeholder="Search..">
+							<form action="/Laptop/search" method="GET" onsubmit="return checkForTheCondition();" >
+							
+							 <input type="text" id="textSearch" name="textSearch" placeholder="Search..">
+							 
 						      <span class="input-group-btn">
-						        <button class="btn btn-primary" type="button"><i class="icon-search"></i></button>
+						        <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
 						      </span>
 							</form>
 						     
@@ -73,5 +76,17 @@
 			
 		</div>
 	</nav>
+	<script type="text/javascript">
+		
+		function checkForTheCondition() 
+		{
+			element_1 = document.getElementsByName('textSearch')[1].value;
+			element_0 = document.getElementsByName('textSearch')[0].value;
+			if(element_1.length <= 2 && element_0.length <= 2 ) return false;
+			return true;
+		}
+	
+		</script>
+	
 </body>
 </html>
