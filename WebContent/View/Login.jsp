@@ -52,7 +52,7 @@ if(session.getAttribute("USERMODEL")!=null) {
                     <div class="signin-form">
                         <h2 class="form-title">Sign up</h2>
                         <h4><%=request.getAttribute("mess") != null ? request.getAttribute("mess") : ""%></h4>
-                        <form method="POST" class="register-form" id="login-form" action="Login">
+                        <form method="POST" class="register-form" id="login-form" action="Login" style="text-algin: center">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="username" id="your_name" placeholder="Your Name"/>
