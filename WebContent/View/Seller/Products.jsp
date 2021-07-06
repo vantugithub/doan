@@ -51,7 +51,7 @@ if(session.getAttribute("USERMODEL")==null)
 if(session.getAttribute("USERMODEL")!=null) {
 	MyUser myUser =(MyUser) session.getAttribute("USERMODEL");
 	Role role = myUser.getRole();
-	if(role.getRoleName().equals("ROLE_EMPLOYEE")==false){
+	if(role.getRoleName().equals("ROLE_SELLER")==false){
 		response.sendRedirect("/Laptop/Login");
 	}
 }
@@ -118,6 +118,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 												<th>Price</th>
 												<th>Status</th>
 												<th>Edit </th>
+												<th>Description</th>
 											</tr>
 										</thead>
 										
@@ -138,6 +139,9 @@ if(session.getAttribute("USERMODEL")!=null) {
 												</c:if>
 												</td>
 												<td><a href="/Laptop/seller/detailproduct?id=${lis.id}"><i class="tim-icons icon-gift-2" ></i></a></td>
+												<td>
+													<a href="/Laptop/seller/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
+												</td>
 											</tr>
 											</c:forEach>
 										

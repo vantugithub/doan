@@ -180,22 +180,25 @@
 			
 			var $this = $(this),
 				tab = $this.data('tab');
-
 			$('.tab-content')
-				.addClass('animated-fast fadeOutDown');
+				.addClass('animated-fast active fadeOutDown');
 
 			$('.fh5co-tab-nav li').removeClass('active');
 			
 			$this
 				.closest('li')
-					.addClass('active')
+					.addClass('active');
 
 			$this
 				.closest('.fh5co-tabs')
 					.find('.tab-content[data-tab-content="'+tab+'"]')
-					.removeClass('animated-fast fadeOutDown')
+					.removeClass('animated-fast active fadeOutDown')
 					.addClass('animated-fast active fadeIn');
-
+					
+			$this
+				.closest('.fh5co-tabs')
+					.find('.tab-content[data-tab-content="'+(2/tab)+'"]')
+					.removeClass('active');
 
 			autoHeight();
 			event.preventDefault();

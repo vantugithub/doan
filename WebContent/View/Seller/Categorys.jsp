@@ -49,7 +49,7 @@ if(session.getAttribute("USERMODEL")==null)
 if(session.getAttribute("USERMODEL")!=null) {
 	MyUser myUser =(MyUser) session.getAttribute("USERMODEL");
 	Role role = myUser.getRole();
-	if(role.getRoleName().equals("ROLE_EMPLOYEE")==false){
+	if(role.getRoleName().equals("ROLE_SELLER")==false){
 		response.sendRedirect("/Laptop/Login");
 	}
 }
