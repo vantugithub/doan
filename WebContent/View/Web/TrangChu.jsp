@@ -101,48 +101,12 @@
 	  	</div>
 	</aside>
 
-	<div id="fh5co-services" class="fh5co-bg-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-sm-4 text-center">
-					<div class="feature-center animate-box" data-animate-effect="fadeIn">
-						<span class="icon">
-							<i class="icon-credit-card"></i>
-						</span>
-						<h3>Credit Card</h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove</p>
-						<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 text-center">
-					<div class="feature-center animate-box" data-animate-effect="fadeIn">
-						<span class="icon">
-							<i class="icon-wallet"></i>
-						</span>
-						<h3>Save Money</h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove</p>
-						<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 text-center">
-					<div class="feature-center animate-box" data-animate-effect="fadeIn">
-						<span class="icon">
-							<i class="icon-paper-plane"></i>
-						</span>
-						<h3>Free Delivery</h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove</p>
-						<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	
-	<div id="fh5co-product">
+	
+	<div id="fh5co-product" style="padding: 3em">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<span>Cool Stuff</span>
 					<h2>Products.</h2>
 					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
 				</div>
@@ -151,8 +115,8 @@
 				
 				<c:forEach var="lis" items="${list}">
 			
-				<div class="col-md-4 text-center animate-box">
-					<div class="product">
+				<div class="col-md-4 text-center animate-box" >
+					<div class="product" >
 					<a href="<%=request.getContextPath()%>/lap?name=${lis.name}">
 					<div class="product-grid" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">
 							
@@ -178,30 +142,47 @@
 				</div>
 				
 				</c:forEach>
-				<!-- <div class="col-md-4 text-center animate-box">
-					<div class="product">
-						<div class="product-grid" style="background-image:url(Template/shop/images/product-2.jpg);">
-							<span class="sale">Sale</span>
-							<div class="inner">
-								<p>
-									<a href="single.html" class="icon"><i class="icon-shopping-cart"></i></a>
-									<a href="single.html" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div>
-						</div>
-						<div class="desc">
-							<h3><a href="single.html">Pavilion Speaker</a></h3>
-							<span class="price">$600</span>
-						</div>
-					</div>
-				</div>
 			
-				 -->
 			</div>
 		</div>
 	</div>
-	
-	<div id="fh5co-testimonial" class="fh5co-bg-section">
+	<div id="fh5co-services" class="fh5co-bg-section" style="padding: 0em">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-sm-4 text-center">
+					<div class="feature-center animate-box" data-animate-effect="fadeIn" style="margin-top: 40px">
+						<span class="icon">
+							<i class="icon-credit-card"></i>
+						</span>
+						<h3>Credit Card</h3>
+ 						<p> We allow you to make credit card bill payment for the Visa, Master and another.</p>
+ 						<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 text-center">
+					<div class="feature-center animate-box" data-animate-effect="fadeIn" style="margin-top: 40px">
+						<span class="icon">
+							<i class="icon-wallet"></i>
+						</span>
+						<h3>Save Money</h3>
+ 						<p>They enjoy perks like 5% off almost any item, exclusive sales, and free returns on all orders. </p>
+						<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4 text-center">
+					<div class="feature-center animate-box" data-animate-effect="fadeIn" style="margin-top: 40px">
+						<span class="icon">
+							<i class="icon-paper-plane"></i>
+						</span>
+						<h3>Free Delivery</h3>
+ 						<p> To an address of your choice when you spend $1000 or more in a single transaction.</p>
+ 						<p><a href="#" class="btn btn-primary btn-outline">Learn More</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	 <div id="fh5co-testimonial" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -251,7 +232,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 	
 
 	<div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url(images/img_bg_5.jpg);">
@@ -306,7 +287,7 @@
 		</div>
 	</div>
 
-	<div id="fh5co-started">
+	<!-- <div id="fh5co-started">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -330,7 +311,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<jsp:include page="Footer.jsp"/>
 	
