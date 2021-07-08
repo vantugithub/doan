@@ -366,8 +366,8 @@ public class ProductDAO {
 	public static List<Product> findProductsByName(Connection conn,String nameProduct){
 		List<Product> list = new ArrayList<Product>();
 		String sql="SELECT products.Id,products.Name,products.Price,products.Image,MATCH (Name) "
-				+ "AGAINST (?) as score FROM products WHERE products.Status = 1 MATCH(Name) "
-				+ "AGAINST (? IN NATURAL LANGUAGE MODE) > 0.1 ORDER BY score DESC";
+				+ "AGAINST (?) as score FROM products WHERE MATCH(Name) "
+				+ "AGAINST (? IN NATURAL LANGUAGE MODE) > 0.28 AND products.Status = 1 ORDER BY score DESC";
 		try {
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
