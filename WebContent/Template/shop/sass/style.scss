@@ -796,7 +796,6 @@ h1, h2, h3, h4, h5, h6, figure {
 		padding: 40px 20px;	
 		background: rgba($brand-white,.8);
 		@media screen and (max-width: $screen-sm) {
-			margin-bottom: 50px;	
 		}
 	}
 	.icon {
@@ -833,7 +832,7 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-about,
 #fh5co-contact,
 #fh5co-footer{
-	padding: 7em 0;
+	padding: 3em 0;
 	clear: both;
 	@media screen and (max-width: $screen-sm) {
 		padding: 3em 0;
@@ -848,9 +847,7 @@ h1, h2, h3, h4, h5, h6, figure {
 	padding-right: 20px;
 	float: left;
 	width: 100%;
-	margin-bottom: 40px;
 	@media screen and (max-width: $screen-sm) {
-		margin-bottom: 50px;		
 	}
 
 	.desc{

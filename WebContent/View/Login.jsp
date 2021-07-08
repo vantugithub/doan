@@ -50,7 +50,7 @@ if(session.getAttribute("USERMODEL")!=null) {
                         <a href="/Laptop/Register" class="signup-image-link">Create an account</a>
                     </div>
                     <div class="signin-form">
-                        <h2 class="form-title">Sign up</h2>
+                        <h2 class="form-title">Sign in</h2>
                         <h4><%=request.getAttribute("mess") != null ? request.getAttribute("mess") : ""%></h4>
                         <form method="POST" class="register-form" id="login-form" action="Login" style="text-algin: center">
                             <div class="form-group">
