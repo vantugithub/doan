@@ -17,7 +17,7 @@
 			<div class="row">
 			
 				<div class="col-md-3 col-xs-2">
-					<div id="fh5co-logo"><a href="/Laptop">Shop.</a></div>
+					<div id="fh5co-logo"><a href="/Laptop">HOME</a></div>
 				</div>
 				
 				
@@ -51,7 +51,7 @@
 						     
 						    </div>
 						</li>
-						<li class="shopping-cart"><a href="/Laptop/Cart" class="cart"><span id="quantity">
+						<li class="shopping-cart" ><a href="/Laptop/Cart" class="cart" style="font-size: 23px"><span id="quantity">
 						<c:if test="${quantity != null}"><small>${quantity}</small></c:if>
 						
 						<i class="icon-shopping-cart"></i></span></a></li>
@@ -60,15 +60,15 @@
 				
 				<c:if test="${not empty USERMODEL }">
 				<div class="text-right hidden-xs menu-2">
-					<div><a  href="/Laptop/profile">${USERMODEL.fullName}</a></div>
+					<div><a  href="/Laptop/profile" style="font-size: 17px;">${USERMODEL.fullName}</a></div>
 				</div>
 				<div class="text-right hidden-xs menu-2">
-					<div><a  href="/Laptop/Logout">Logout</a></div>
+					<div><a  href="/Laptop/Logout" class="btn btn-primary btn-outline">Logout</a></div>
 				</div>
 				</c:if>
 				<c:if test="${empty USERMODEL }">
 				<div class="text-right hidden-xs menu-2">
-					<div><a  href="/Laptop/Login">Login</a></div>
+					<div><a  href="/Laptop/Login" class="btn btn-primary btn-outline">Login</a></div>
 				</div>
 				</c:if>
 				

@@ -53,7 +53,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 <jsp:include page="Header.jsp"/>
 	
 	
-	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(Template/shop/images/profile.jpg);">
+	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(Template/shop/images/phim.jpg);">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">

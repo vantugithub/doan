@@ -63,7 +63,13 @@ a:hover, a:active, a:focus {
 }
 
 p {
-  margin-bottom: 20px;
+  margin-bottom: 3px;
+}
+
+.title-infor {
+	color: black;
+	font-weight: bold;
+	margin-bottom: 15px;
 }
 
 h1, h2, h3, h4, h5, h6, figure {
@@ -106,7 +112,7 @@ h1, h2, h3, h4, h5, h6, figure {
   font-family: "Montserrat", Arial, sans-serif;
 }
 .fh5co-nav a {
-  padding: 5px 10px;
+  padding: 1px 5px;
   color: #000;
 }
 @media screen and (max-width: 768px) {
@@ -190,7 +196,7 @@ h1, h2, h3, h4, h5, h6, figure {
   font-family: "Montserrat", Arial, sans-serif;
 }
 .fh5co-nav ul li a {
-  font-size: 13px;
+  font-size: 15.5px;
   padding: 30px 10px;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.5);
@@ -438,7 +444,7 @@ h1, h2, h3, h4, h5, h6, figure {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
 }
 .fh5co-cover > .fh5co-container {
   position: relative;
@@ -463,7 +469,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 .fh5co-cover.fh5co-cover-sm {
-  height: 600px;
+  height: 150px;
 }
 @media screen and (max-width: 768px) {
   .fh5co-cover.fh5co-cover-sm {
@@ -472,7 +478,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 .fh5co-cover.fh5co-cover-sm .display-t,
 .fh5co-cover.fh5co-cover-sm .display-tc {
-  height: 600px;
+  height: 158px;
   display: table;
   width: 100%;
 }
@@ -877,8 +883,8 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .fh5co-tabs .fh5co-tab-nav {
   clear: both;
-  margin: 0 0 3em 0;
-  padding: 3px;
+/*   margin: 0 0 3em 0;
+ */  padding: 3px;
   float: left;
   width: 100%;
   background: #f2f2f2;
@@ -903,7 +909,8 @@ h1, h2, h3, h4, h5, h6, figure {
   font-size: 30px;
 }
 .fh5co-tabs .fh5co-tab-nav li a {
-  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   width: 100%;
   float: left;
   -webkit-border-radius: 4px;
@@ -1144,6 +1151,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 #fh5co-footer {
   background: #efefef;
+ 
 }
 #fh5co-footer .fh5co-footer-links {
   padding: 0;
@@ -1668,7 +1676,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .row-pb-md {
-  padding-bottom: 4em !important;
+  padding-bottom: 2em !important;
 }
 
 .row-pb-sm {

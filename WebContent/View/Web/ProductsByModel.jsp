@@ -38,11 +38,11 @@
 	<jsp:include page="Header.jsp"/>
 	<div id="fh5co-product">
 		<div class="container">
-			<div class="row animate-box">
+			<!-- <div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Products</h2>
 				</div>
-			</div>
+			</div> -->
 			<div class="row">
 				
 				<c:forEach var="lis" items="${list}">
