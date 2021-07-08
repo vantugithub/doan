@@ -99,8 +99,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 							<li class="url"><a href="#">${myUser.fullName}</a></li>
 						</ul>
 						<div class="form-group">
-						
-							<input type="submit" value="Change password" class="btn btn-danger">
+							<input type="button" data-toggle="modal" data-target="#exampleModal" value="Change password" class="btn btn-danger">
 						</div>
 						
 					</div>
@@ -174,11 +173,112 @@ if(session.getAttribute("USERMODEL")!=null) {
 		</div>
 	</div>
 	</div>
+	
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+        
+        <div id="mess" class="form-group"></div>
+        
+       <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+      
+		 
+     
+ 			<div class="form-group">
+            <div id="mess" class="col-md-5 col-md-push-1 animate-box"></div>
+          </div>
+        <form method="post" name="myForm" onsubmit="return validate()">
+        
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Old password:</label>
+            <input type="password" class="form-control" name="password" id="recipient-name">
+          </div>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">New Password:</label>
+            <input type="password" class="form-control" name="newPassword1"	id="newPassword1">
+          </div>
+          
+          <label class="form-group" id="errorPass1" style="color:red;"></label>
+          
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Password Confirm:</label>
+            <input type="password" class="form-control" name="newPassword2"	id="newPassword2">
+          </div>
+          
+          <label class="form-group" id="errorPass2" style="color:red;"></label>
+         
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onclick="changePass()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
 <div id="page">
 <jsp:include page="Footer.jsp"/>
 	</div>
 	
 	<script type="text/javascript">
+	function changePass() {
+		if(validate()==false)
+			{
+			return;
+			}
+		else{
+			var xhttp;
+			var newPassword1 = document.myForm.newPassword1.value;
+			var currentPassword = document.myForm.password.value;
+			var url = "/Laptop/profile/changepass?newpassword=" + newPassword1
+			+"&currentpassword=" + currentPassword;
+			/* var url = "/Laptop/profile/update?fullname="+fullname+"&address="+address+"&phone="+phone; */
+			if (window.XMLHttpRequest) {
+				xhttp = new XMLHttpRequest();
+			} else {
+				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4) {
+					var data = xhttp.responseText;
+					document.getElementById("mess").innerHTML = data;
+				}
+			}
+			xhttp.open("POST", url, true);
+			xhttp.send();
+		}
+		
+	}
+	
+	function validate() {
+		var newPassword1 = document.myForm.newPassword1.value;
+		var newPassword2 = document.myForm.newPassword2.value;
+		
+			if(newPassword1.length < 6) {
+			document.getElementById("errorPass1").innerHTML="Must be at least 6 characters";
+			return false;
+			}
+			if(newPassword1.length >= 6){
+				document.getElementById("errorPass1").innerHTML="";
+			}
+			if(newPassword1 != newPassword2) {
+				document.getElementById("errorPass2").innerHTML="Password must be same!";
+				return false;
+			}
+	}
+	
+	
 		function updateUser() {
 				var xhttp;
 				var fullname = document.getElementById("fullname").value;

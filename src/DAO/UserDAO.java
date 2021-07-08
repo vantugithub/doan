@@ -211,4 +211,24 @@ public class UserDAO {
 		return 0;
 	}
 	
+	public static int updatePasswordOfUser(Connection conn,MyUser myUser) {
+		try {
+			String sql= "UPDATE users SET password = ? WHERE iduser = ? ";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setNString(1, myUser.getPassword());
+			ps.setInt(2, myUser.getId());
+			if(ps.executeUpdate()!=0)
+			{
+				ps.close();
+				return 1;
+			}
+			ps.close();
+		}
+		catch (Exception e) {
+			System.out.println(e.toString());
+			return 0;
+		}
+		return 0;
+	}
+	
 }

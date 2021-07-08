@@ -24,7 +24,7 @@
 							<li class="url"><a href="#">${myUser.fullName}</a></li>
 						</ul>
 						<div class="form-group">
-							<input type="submit" value="Change password" class="btn btn-danger">
+							<input type="button" data-toggle="modal" data-target="#exampleModal"  value="Change password" class="btn btn-danger">
 						</div>
 					</div>
 
@@ -80,5 +80,7 @@
 					</form>
 					
 				</div> --%>
+				
+				
 </body>
 </html>

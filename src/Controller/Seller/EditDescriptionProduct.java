@@ -36,7 +36,8 @@ public class EditDescriptionProduct extends HttpServlet {
 
 	@SuppressWarnings("static-access")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getCharacterEncoding()==null) {
+		if(request.getCharacterEncoding()==null) 
+		{
 			request.setCharacterEncoding("UTF-8");
 		}
 		Connection conn = DBConnection.creatConnection();

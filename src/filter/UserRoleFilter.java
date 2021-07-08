@@ -56,6 +56,9 @@ public class UserRoleFilter implements Filter {
         	else if(roleName.equals("ROLE_SELLER") && request.getServletPath().contains("seller")==true) {
         		chain.doFilter(request, response);
         	}
+        	else if(roleName.equals("ROLE_SHIPPER") && request.getServletPath().contains("shipper")==true) {
+        		chain.doFilter(request, response);
+        	}
         	else {
         		response.sendRedirect(loginUrl);
         	}
