@@ -39,6 +39,11 @@
 		<url-pattern>/seller/*</url-pattern> 
 		</filter-mapping>
 		
+		<filter-mapping> 
+		<filter-name>UserRoleFilter</filter-name> 
+		<url-pattern>/shipper/*</url-pattern> 
+		</filter-mapping>
+		
 	<welcome-file-list>
 		<welcome-file>Home</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
