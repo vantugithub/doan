@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,8 @@
 <title></title>
 </head>
 <body>
+		    			<c:set var="s" value="0"></c:set>
+
 <c:if test="${list.size()>0}">
                 <table class="table table-striped">
                     <thead>
@@ -22,6 +26,8 @@
                     
                    
                     <c:forEach items="${list}" var="lis">
+                    <c:set var="s" value="${s + lis.product.price * lis.quantity }"></c:set>
+                    
                         <tr>
                             <td><img class="custom-image" src="<%=request.getContextPath()%>/image/${lis.product.image}" /> </td>
                             <td>${lis.product.name}</td>
@@ -50,17 +56,25 @@
 					</div>	
 				</div> -->
 				<c:if test="${list.size()>0}">
-				<div class="col-md-4 col-sm-4 ">
-					<div class="" data-animate-effect="fadeIn">
-						<p><a href="#" class="btn btn-success btn-outline">Checkout</a></p>
-					</div>
+				<th colspan="5">Total</th>
+			<th><fmt:formatNumber type="number" maxFractionDigits="3"
+					value="${s}" /></th>	
+				<div >
+				
+					<form action="${pageContext.request.contextPath}/success?total=${s}"
+						method="post" >
+						<p style="text-align: center;"><input type="submit" class="btn btn-success btn-outline" value="Checkout"
+							style="margin: 0 auto"></p>
+					</form>
 				</div>
+					 </div>
+				
 				</c:if>
 				<c:if test="${list.size() <= 0 || list==null}">
 				<div class="container">
         				<h1 class="jumbotron-heading">No products</h1>
     			 </div>
-				</c:if>
+				</c:if>				
 				
 			</div>
 			

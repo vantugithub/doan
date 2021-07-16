@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>Product</title>
+<title>Orders</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -51,7 +51,7 @@ if(session.getAttribute("USERMODEL")==null)
 if(session.getAttribute("USERMODEL")!=null) {
 	MyUser myUser =(MyUser) session.getAttribute("USERMODEL");
 	Role role = myUser.getRole();
-	if(role.getRoleName().equals("ROLE_SELLER")==false){
+	if(role.getRoleName().equals("ROLE_SHIPPER")==false){
 		response.sendRedirect("/Laptop/Login");
 	}
 }
@@ -77,33 +77,11 @@ if(session.getAttribute("USERMODEL")!=null) {
 					<div class="col-md-12">
 					
 						<div class="card ">
-						<% if(request.getAttribute("mess") == ("Created Success")) 
-						{
-						%>
-						<div class="alert alert-success" role="alert">
-							  This is a success alert—check it out!
-						</div>
-						<% 
-						}
-						else if(request.getAttribute("mess")==("Created Failded"))
-						{
-						%>
-						<div class="alert alert-danger" role="alert">
-							  This is a danger alert—check it out!
-						</div>
-						<%
-						}
-						else 
-						{
-						}
-						%>
+						
 							<div class="card-header">
-							<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Create product</button>
+								<h4 class="card-title">List of orders</h4>
 							</div>
 							
-							<div class="card-header">
-								<h4 class="card-title">List of products</h4>
-							</div>
 							
 							<div class="card-body">
 							
@@ -114,11 +92,13 @@ if(session.getAttribute("USERMODEL")!=null) {
 											<tr>
 												<th>Id</th>
 												<th>Name</th>
-												<th>Warranty</th>
-												<th>Price</th>
-												<th>Status</th>
-												<th>Edit </th>
-												<th>Description</th>
+												<th>Phone</th>
+												<th>Address</th>
+												<th>OrderDate</th>
+												<th>Total</th>
+												<th>View</th>
+												<!-- <th>Edit </th>
+												<th>Description</th> -->
 											</tr>
 										</thead>
 										
@@ -128,20 +108,22 @@ if(session.getAttribute("USERMODEL")!=null) {
 											<tr>
 												<td>${lis.id}</td>
 												<td>${lis.name}</td>
-												<td>${lis.warranty}</td>
-												<th>${lis.price}</th>
-												<td>
-												<c:if test="${lis.status == true}">
+												<td>${lis.phone}</td>
+												<td>${lis.address}</td>
+												<td>${lis.orderDate}</td>
+												<th>${lis.total}</th>
+												<td><a href="/Laptop/shipper/shippingDetail?id=${lis.id}&change=1"><i class="tim-icons icon-zoom-split" ></i></a></td>
+												<%-- <c:if test="${lis.status == true}">
 																<i class="tim-icons icon-check-2"></i>
 												</c:if>
 												<c:if test="${lis.status == false}">
 																<i class="tim-icons icon-simple-remove"></i>
 												</c:if>
 												</td>
-												<td><a href="/Laptop/seller/detailproduct?id=${lis.id}"><i class="tim-icons icon-gift-2" ></i></a></td>
+												
 												<td>
-													<a href="/Laptop/seller/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
-												</td>
+													<a href="/Laptop/shipper/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
+												</td> --%>
 											</tr>
 											</c:forEach>
 										
@@ -155,26 +137,26 @@ if(session.getAttribute("USERMODEL")!=null) {
 				<ul class="pagination">
 					<c:if test="${numberPage == 1}">
 
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=2">2</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=1">1</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=2">2</a></li>
 						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/products?page=${numberPage+1}">Next</a></li>
+							href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage+1}">Next</a></li>
 					</c:if>
 
 					<c:if test="${numberPage == maxPageId}">
 						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/products?page=${numberPage-1}">Prev</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=2">2</a></li>
+							href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage-1}">Prev</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=1">1</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=2">2</a></li>
 					</c:if>
 
 					<c:if test="${numberPage > 1 && numberPage < maxPageId}">
 						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/products?page=${numberPage-1}">Prev</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=2">2</a></li>
+							href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage-1}">Prev</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=1">1</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=2">2</a></li>
 						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/products?page=${numberPage+1}">Next</a></li>
+							href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage+1}">Next</a></li>
 					</c:if>
 				</ul>
 
@@ -190,65 +172,8 @@ if(session.getAttribute("USERMODEL")!=null) {
 	</div>
 
 	
-	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New product</h5>
-      </div>
-      <div class="modal-body">
-        <form method = "GET" action="<%=request.getContextPath()%>/seller/CreateProduct">
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Name:</label>
-            <input type="text" name="nameOfProduct" class="btn btn-success" />
-          </div>
-	          <div class="form-group">
-	                      <label for="recipient-name" class="col-form-label">Manufacturer:</label>
-	          
-					<select class="btn btn-success" id="inlineFormCustomSelect" name="item">
-			        <option value="selected">Choose</option>
-			        <c:forEach items="${listt}" var="lis">
-			        <option value="${lis.id}" name=""> ${lis.name} </option>
-			        </c:forEach>
-			        </select>
-			        	
-			        
-			  </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-        </form> 
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
 
 
-<div class="modal" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Thể loại mới</h5>
-      </div>
-      <div class="modal-body">
-        <form method="GET" action="<%=request.getContextPath()%>/seller/CreateCategory">
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Tên thể loại:</label>
-            <input type="text" name="category" class="btn btn-primary">
-          </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
-
-
-	
 	
 	<script
 		src="<%=request.getContextPath()%>/Template/Admin/js/core/jquery.min.js"></script>

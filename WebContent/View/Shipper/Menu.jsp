@@ -19,41 +19,24 @@
         </div>
         <ul class="nav">
           <li class="">
-            <a href="/Laptop/admin">
-              <i class="tim-icons icon-chart-pie-36"></i>
-              <p>Statistics</p>
-            </a>
-          </li>
-          <li>
-            <a href="/Laptop/admin/users?page=1">
-              <i class="tim-icons icon-single-02"></i>
-              <p>User management</p>
-            </a>
-          </li>
-          <li>
-            <a href="/Laptop/admin/products?page=1">
-              <i class="tim-icons icon-puzzle-10"></i>
-              <p>Product management</p>
-            </a>
-          </li>
-          <li>
-            <a href="/Laptop/admin/categorys">
-              <i class="tim-icons icon-puzzle-10"></i>
-              <p>Category management</p>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="tim-icons icon-align-center"></i>
+            <a href="/Laptop/shipper/orders?page=1">
+              <i class="tim-icons icon-cart"></i>
               <p>Order management</p>
             </a>
           </li>
-          <li class="active-pro">
-            <a href="#">
-              <i class="tim-icons icon-spaceship"></i>
-              <p>Upgrade to PRO</p>
+           <li class="">
+            <a href="/Laptop/shipper/shipping?page=1">
+              <i class="tim-icons icon-delivery-fast"></i>
+              <p>Shipping</p>
             </a>
           </li>
+          <li>
+            <a href="/Laptop/shipper/history">
+              <i class="tim-icons icon-notes"></i>
+              <p>History</p>
+            </a>
+          </li>
+           
         </ul>
       </div>
     </div>

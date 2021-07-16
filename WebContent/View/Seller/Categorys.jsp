@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>Edit User</title>
+<title>Category</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -133,7 +133,7 @@ if(session.getAttribute("USERMODEL")!=null) {
           </div>
 	          <div class="form-group">
 			        <select class="btn btn-success"id="inlineFormCustomSelect" path="id">
-			        <option value="selected">Choose......................................</option>
+			        <option value="selected">Choose</option>
 			        <option value="${lis.id}" name=""> ${lis.name} </option>
 			        </select>
 			  </div>

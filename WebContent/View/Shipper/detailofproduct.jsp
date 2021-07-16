@@ -1,6 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="BEAN.Role"%>
 <%@page import="BEAN.MyUser"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,12 +14,10 @@
 <link rel="icon" type="image/png"
 	href="<%=request.getContextPath()%>/Template/Admin/img/favicon.png">
 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>Product</title>
+<title>Edit Product</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -51,7 +49,7 @@ if(session.getAttribute("USERMODEL")==null)
 if(session.getAttribute("USERMODEL")!=null) {
 	MyUser myUser =(MyUser) session.getAttribute("USERMODEL");
 	Role role = myUser.getRole();
-	if(role.getRoleName().equals("ROLE_SELLER")==false){
+	if(role.getRoleName().equals("ROLE_ADMIN")==false){
 		response.sendRedirect("/Laptop/Login");
 	}
 }
@@ -74,113 +72,140 @@ if(session.getAttribute("USERMODEL")!=null) {
 
 			<div class="content">
 				<div class="row">
-					<div class="col-md-12">
-					
-						<div class="card ">
-						<% if(request.getAttribute("mess") == ("Created Success")) 
-						{
-						%>
-						<div class="alert alert-success" role="alert">
-							  This is a success alert—check it out!
-						</div>
-						<% 
-						}
-						else if(request.getAttribute("mess")==("Created Failded"))
-						{
-						%>
-						<div class="alert alert-danger" role="alert">
-							  This is a danger alert—check it out!
-						</div>
-						<%
-						}
-						else 
-						{
-						}
-						%>
-							<div class="card-header">
-							<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Create product</button>
-							</div>
-							
-							<div class="card-header">
-								<h4 class="card-title">List of products</h4>
-							</div>
-							
-							<div class="card-body">
-							
-								<div class="">
-									<table class="table tablesorter " id="">
-									
-										<thead class=" text-primary">
-											<tr>
-												<th>Id</th>
-												<th>Name</th>
-												<th>Warranty</th>
-												<th>Price</th>
-												<th>Status</th>
-												<th>Edit </th>
-												<th>Description</th>
-											</tr>
-										</thead>
-										
-										<tbody>
-										
-											<c:forEach items="${list}" var="lis">
-											<tr>
-												<td>${lis.id}</td>
-												<td>${lis.name}</td>
-												<td>${lis.warranty}</td>
-												<th>${lis.price}</th>
-												<td>
-												<c:if test="${lis.status == true}">
-																<i class="tim-icons icon-check-2"></i>
-												</c:if>
-												<c:if test="${lis.status == false}">
-																<i class="tim-icons icon-simple-remove"></i>
-												</c:if>
-												</td>
-												<td><a href="/Laptop/seller/detailproduct?id=${lis.id}"><i class="tim-icons icon-gift-2" ></i></a></td>
-												<td>
-													<a href="/Laptop/seller/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
-												</td>
-											</tr>
-											</c:forEach>
-										
-										</tbody>
-										
-									</table>
-								</div>
-							</div>
-							
-							<div >
-				<ul class="pagination">
-					<c:if test="${numberPage == 1}">
+					<div class="col-md-8">
+            <div class="card">
+            
+              <div class="card-header">
+                <h5 class="title">Edit Product</h5>
+              </div>
+              
+              <div class="card-body">
+              
+              <c:forEach items="${list}" var="lis">
+              
+                <form method = "GET" action="<%=request.getContextPath()%>/admin/updateproductbyid">
+                
+                  <%-- <div class="row">
+                  
+                   <div class="col-md-5 pr-md-1">
+                      <div class="form-group">
+                        <label>Id Of Product</label>
+                        <input type="text" class="form-control" disabled="" name="id" value="${lis.id}">
+                      </div>
+                    </div>
+                    
+                  </div> --%>
+                  <div class="row">
+                  
+                
+                      <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Id Product</label>
+                        <input type="text" readonly="true"  class="form-control" name="id" placeholder="Name" value="${lis.id}">
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 pr-md-1">
+                      <div class="form-group">
+                        <label>Name Product</label>
+                        <input type="text" class="form-control" name="name" placeholder="Name" value="${lis.name}">
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 pl-md-1">
+                      <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" class="form-control" name="price" placeholder="Price" value="${lis.price}">
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 pr-md-1">
+                      <div class="form-group">
+                        <label>Warranty</label>
+                        <input type="text" class="form-control"  name = "warranty" placeholder="Warranty" value="${lis.warranty}">
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-6 pl-md-1">
+                      <div class="form-group">
+                        <label>Promotion Price</label>
+                        <input type="text" class="form-control" name="promotionPrice" placeholder="Promotion Price" value="${lis.promotionPrice}">
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-6 pr-md-1">
+                      <div class="form-group">
+                        <label>Date Created</label>
+                        <input type="text"	disabled="" class="form-control" placeholder="Date Created" value="${lis.dateCreated}">
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-6 pl-md-1">
+                      <div class="form-group">
+                        <label>User Created</label>
+                        <input type="text"	disabled="" class="form-control" placeholder="User Created" value="${lis.userCreated}">
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-6 pr-md-1">
+                      <div class="form-group">
+                        <label>Date Modified</label>
+                        <input type="text" 	disabled=""class="form-control" placeholder="Date Modified" value="${lis.dateModified}">
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-6 pl-md-1">
+                      <div class="form-group">
+                        <label>User Modified</label>
+                        <input type="text"	disabled="" class="form-control" placeholder="User Modified" value="${lis.userModified}">
+                      </div>
+                    </div>
+                    
+                  </div>
 
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=2">2</a></li>
-						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/products?page=${numberPage+1}">Next</a></li>
-					</c:if>
-
-					<c:if test="${numberPage == maxPageId}">
-						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/products?page=${numberPage-1}">Prev</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=2">2</a></li>
-					</c:if>
-
-					<c:if test="${numberPage > 1 && numberPage < maxPageId}">
-						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/products?page=${numberPage-1}">Prev</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/products?page=2">2</a></li>
-						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/products?page=${numberPage+1}">Next</a></li>
-					</c:if>
-				</ul>
-
-			</div>
-						</div>
-					</div>
+                  <div class="card-footer">
+                  
+                <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                
+                <a class="btn btn-fill btn-success" href="/Laptop/admin/products?page=1"> Cancel </a>
+                <c:if test="${lis.status == true}">
+                	<a class="btn btn-fill btn-info" href="/Laptop/admin/unlockproduct?status=true&id=${lis.id}"> Lock </a>
+                </c:if>
+                <c:if test="${lis.status == false}">
+                	 <a class="btn btn-fill btn-light" href="/Laptop/admin/unlockproduct?status=false&id=${lis.id}"> Unlock </a>
+                </c:if>
+                <a class="btn btn-fill btn-danger" href="/Laptop/admin/deleteproduct?id=${lis.id}"> Delete </a>
+              </div>
+                </form>
+                </c:forEach>
+              </div>
+              
+            </div>
+            </div>
+					<div class="col-md-4">
+            <div class="card card-user">
+              <div class="card-body">
+                <p class="card-text">
+                  <div class="author">
+                    <div class="block block-one"></div>
+                    <div class="block block-two"></div>
+                    <div class="block block-three"></div>
+                    <div class="block block-four"></div>
+                   	<c:forEach items="${list}" var="lis">
+	                   	<form action="<%=request.getContextPath()%>/admin/UploadAvatarProduct"  enctype="multipart/form-data" method = "POST">
+	                   	 <input  type="file" name="file" class="file" accept="image/*" /> <img id="preview" src="<%=request.getContextPath()%>/image/${lis.image}" />
+						 <input type="hidden" name="idOfProductt"  value="${lis.id}" />                	
+	                   	<button type="submit" class="btn btn-fill btn-primary">Save</button>
+	                   	</form>
+                    </c:forEach>
+                  </div>
+              </div>
+            </div>
+          </div>
 				</div>
 			</div>
 			<!--Begin footer -->
@@ -189,67 +214,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 		</div>
 	</div>
 
-	
-	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New product</h5>
-      </div>
-      <div class="modal-body">
-        <form method = "GET" action="<%=request.getContextPath()%>/seller/CreateProduct">
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Name:</label>
-            <input type="text" name="nameOfProduct" class="btn btn-success" />
-          </div>
-	          <div class="form-group">
-	                      <label for="recipient-name" class="col-form-label">Manufacturer:</label>
-	          
-					<select class="btn btn-success" id="inlineFormCustomSelect" name="item">
-			        <option value="selected">Choose</option>
-			        <c:forEach items="${listt}" var="lis">
-			        <option value="${lis.id}" name=""> ${lis.name} </option>
-			        </c:forEach>
-			        </select>
-			        	
-			        
-			  </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-        </form> 
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
 
-
-<div class="modal" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Thể loại mới</h5>
-      </div>
-      <div class="modal-body">
-        <form method="GET" action="<%=request.getContextPath()%>/seller/CreateCategory">
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Tên thể loại:</label>
-            <input type="text" name="category" class="btn btn-primary">
-          </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
-
-
-	
-	
 	<script
 		src="<%=request.getContextPath()%>/Template/Admin/js/core/jquery.min.js"></script>
 	<script
@@ -273,6 +238,24 @@ if(session.getAttribute("USERMODEL")!=null) {
 	<!-- Black Dashboard DEMO methods, don't include it in your project! -->
 	<script src="<%=request.getContextPath()%>/Template/Admin/demo/demo.js"></script>
 	<script>
+	
+	$(document).on("click", ".browse", function() {
+		  var file = $(this).parents().find(".file");
+		  file.trigger("click");
+		});
+		$('input[type="file"]').change(function(e) {
+		  var fileName = e.target.files[0].name;
+		  $("#file").val(fileName);
+
+		  var reader = new FileReader();
+		  reader.onload = function(e) {
+		    // get loaded data and render thumbnail.
+		    document.getElementById("preview").src = e.target.result;
+		  };
+		  // read the image file as a data URL.
+		  reader.readAsDataURL(this.files[0]);
+		});
+	
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');
@@ -369,7 +352,6 @@ if(session.getAttribute("USERMODEL")!=null) {
 
             white_color = true;
           }
-
 
         });
 

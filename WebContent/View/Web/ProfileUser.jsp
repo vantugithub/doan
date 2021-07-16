@@ -29,6 +29,8 @@
 	<!-- Modernizr JS -->
 	<script src="Template/shop/js/modernizr-2.6.2.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	
 
 	<link rel="stylesheet" href="Template/Cart/css.css">
 </head>
@@ -152,14 +154,44 @@ if(session.getAttribute("USERMODEL")!=null) {
 							<div class="fh5co-tab-content tab-content" data-tab-content="2">
 									
 									
-									<h3>Your Order History</h3>
-									<ul>
-										<li>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius</li>
-										<li>adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi</li>
-										<li>Veritatis tenetur odio delectus quibusdam officiis est.</li>
-										<li>Magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</li>
-									</ul>
+									<div class="card-body">
+
+								<div class="">
+									<table class="table tablesorter " id="">
+
+										<thead class=" text-primary">
+											<tr>
+												<th>Product</th>
+												<th>OrderDate</th>
+												<th>Status</th>
+												<th>Quantity</th>
+												<th>Price</th>
+
+											</tr>
+										</thead>
+
+										<tbody>
+
+											<c:forEach items="${list}" var="lis" >
+											<c:forEach items="${list2}"  var="lis2">
+												<tr>
+													<td>${lis.product.name}</td>
+													<td>${lis2.orderDate}</td>
+													<td>${lis2.status}</td>
+													<td style="text-align:center">${lis.quantity}</td>
+													<td>${lis.price}</td>
+												</tr>
+												</c:forEach>
+											</c:forEach>
+											
+
+										</tbody>
+
+									</table>
 									
+									
+								</div>
+							</div>
 							</div>
 							
 							

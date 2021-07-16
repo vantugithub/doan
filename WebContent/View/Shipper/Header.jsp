@@ -58,7 +58,7 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link"><a href="<%=request.getContextPath()%>/admin/profile" class="nav-item dropdown-item">Profile</a></li>
+                  <li class="nav-link"><a href="<%=request.getContextPath()%>/shipper/profile" class="nav-item dropdown-item">Profile</a></li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-link"><a href="/Laptop/Logout" class="nav-item dropdown-item">Log out</a></li>
                 </ul>

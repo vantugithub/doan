@@ -18,13 +18,24 @@
           </a>
         </div>
         <ul class="nav">
-          <li class="">
-            <a href="#">
-              <i class="tim-icons icon-chart-pie-36"></i>
-              <p>Statistics</p>
+           <li>
+            <a href="/Laptop/seller/orders?page=1">
+              <i class="tim-icons icon-align-center"></i>
+              <p>Order management</p>
             </a>
           </li>
-
+         <li>
+            <a href="/Laptop/seller/pending">
+              <i class="tim-icons icon-refresh-02"></i>
+              <p>Pending</p>
+            </a>
+          </li>
+          <li>
+            <a href="/Laptop/seller/history">
+              <i class="tim-icons icon-notes"></i>
+              <p>History</p>
+            </a>
+          </li>
           <li>
             <a href="/Laptop/seller/products?page=1">
               <i class="tim-icons icon-puzzle-10"></i>
@@ -35,12 +46,6 @@
             <a href="/Laptop/seller/categorys">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Category management</p>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="tim-icons icon-align-center"></i>
-              <p>Order management</p>
             </a>
           </li>
           <li class="active-pro">
