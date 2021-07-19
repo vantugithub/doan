@@ -31,7 +31,6 @@ public class OrderDAO {
 
 			ResultSet res = ps.getGeneratedKeys();
 			while (res.next()) {
-				System.out.println(res.getString(1));
 				String orderidStr = res.getString(1);
 				int orderid = Integer.parseInt(orderidStr);
 				return orderid;
@@ -226,7 +225,7 @@ public class OrderDAO {
 	
 	public static List<Order> historyShip(Connection conn, int idShipper) {
 		List<Order> list = new ArrayList<Order>();
-		String sql = "SELECT * FROM orders WHERE IdShipper = ? AND Status != 'Shipping' AND Status != 'Pending'";
+		String sql = "SELECT * FROM orders WHERE IdShipper = ? AND Status = 'Success' ";
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -348,7 +347,7 @@ public class OrderDAO {
 	}
 	
 	public static boolean cancelShip(Connection conn, long idOrder, int idShipper) {
-		String sql = "UPDATE orders SET Status = 'Reject', IdShipper = ? WHERE (`Id` = ?);";
+		String sql = "UPDATE orders SET Status = 'Pending', IdShipper = ? WHERE (`Id` = ?);";
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -371,6 +370,64 @@ public class OrderDAO {
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, idShipper);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Order order = new Order();
+				order.setId(rs.getLong("Id"));
+				order.setStatus(rs.getString("Status"));
+				order.setAddress(rs.getString("Address"));
+				order.setName(rs.getString("Name"));
+				order.setPhone(rs.getString("Phone"));
+				order.setOrderDate(rs.getString("OrderDate"));
+				order.setIdUser(rs.getString("IdUser"));
+				order.setIdSale(rs.getString("IdSale"));
+				order.setIdShip(rs.getString("IdShipper"));
+				order.setTotal(rs.getInt("Total"));
+				list.add(order);
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public static List<Order> shippingAdmin(Connection conn) {
+		List<Order> list = new ArrayList<Order>();
+		String sql = "SELECT * FROM orders WHERE Status = 'Shipping'";
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Order order = new Order();
+				order.setId(rs.getLong("Id"));
+				order.setStatus(rs.getString("Status"));
+				order.setAddress(rs.getString("Address"));
+				order.setName(rs.getString("Name"));
+				order.setPhone(rs.getString("Phone"));
+				order.setOrderDate(rs.getString("OrderDate"));
+				order.setIdUser(rs.getString("IdUser"));
+				order.setIdSale(rs.getString("IdSale"));
+				order.setIdShip(rs.getString("IdShipper"));
+				order.setTotal(rs.getInt("Total"));
+				list.add(order);
+			}
+			ps.close();
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public static List<Order> historyAdmin(Connection conn) {
+		List<Order> list = new ArrayList<Order>();
+		String sql = "SELECT * FROM orders WHERE Status = 'Success' OR Status = 'Reject' ";
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Order order = new Order();

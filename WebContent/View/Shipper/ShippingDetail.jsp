@@ -21,7 +21,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>Product</title>
+<title>Detail</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -161,9 +161,7 @@
 					</div>
 				</div>
 			</div>
-			<!--Begin footer -->
-			<jsp:include page="Footer.jsp" />
-			<!-- End Footer -->
+			
 		</div>
 	</div>
 

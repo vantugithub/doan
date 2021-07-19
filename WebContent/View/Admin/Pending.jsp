@@ -21,7 +21,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>History</title>
+<title>Pending</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -53,7 +53,7 @@
 	if (session.getAttribute("USERMODEL") != null) {
 		MyUser myUser = (MyUser) session.getAttribute("USERMODEL");
 		Role role = myUser.getRole();
-		if (role.getRoleName().equals("ROLE_SHIPPER") == false) {
+		if (role.getRoleName().equals("ROLE_ADMIN") == false) {
 			response.sendRedirect("/Laptop/Login");
 		}
 	}
@@ -96,51 +96,45 @@
 
 
 							<div class="card-header">
-								<h4 class="card-title">History</h4>
+								<h4 class="card-title">Pending</h4>
 							</div>
 
 							<div class="card-body">
 
 								<div class="">
-								<c:if test="${not empty list}">
-								
-									<table class="table tablesorter " id=""
-										style="text-align: center">
+									<c:if test="${not empty list}">
 
-										<thead class=" text-primary">
-											<tr>
-												<th>Id</th>
-												<th>Name</th>
-												<th>Phone</th>
-												<th>Address</th>
-												<th>OrderDate</th>
-												<th>Total</th>
-												<th>Status</th>
-												<th>View</th>
-												<!-- <th>Edit </th>
-												<th>Description</th> -->
-											</tr>
-										</thead>
+										<table class="table tablesorter " id="" style="text-align: center">
 
-										<tbody>
-
-											<c:forEach items="${list}" var="lis">
+											<thead class=" text-primary">
 												<tr>
-													<td>${lis.id}</td>
-													<td>${lis.name}</td>
-													<td>${lis.phone}</td>
-													<td>${lis.address}</td>
-													<td>${lis.orderDate}</td>
-													<td>${lis.total}</td>
-													<c:if test="${lis.status=='Success'}">
-														<th style="color: #1d8cf8">${lis.status}</th>
-													</c:if>
-													
-													<%-- <th><input class="btn btn-primary  btn-sm"
-														value="${lis.status}" style="width: 40%"></th> --%>
-													<td><a href="/Laptop/shipper/detailorder?id=${lis.id}"><i
-															class="tim-icons icon-zoom-split"></i></a></td>
-													<%-- <c:if test="${lis.status == true}">
+													<th>Id</th>
+													<th>Name</th>
+													<th>Phone</th>
+													<th>Address</th>
+													<th>OrderDate</th>
+													<th>Sale</th>
+													<th>Total</th>
+													<th>View</th>
+													<!-- <th>Edit </th>
+												<th>Description</th> -->
+												</tr>
+											</thead>
+
+											<tbody>
+
+												<c:forEach items="${list}" var="lis" varStatus="status">										
+													<tr>
+														<td>${lis.id}</td>
+														<td>${lis.name}</td>
+														<td>${lis.phone}</td>
+														<td>${lis.address}</td>
+														<td>${lis.orderDate}</td>
+														<td>${saleList[status.index].fullName}</td>
+														<td>${lis.total}</td>
+														<td><a href="/Laptop/admin/detailorder?id=${lis.id}"><i
+																class="tim-icons icon-zoom-split"></i></a></td>
+														<%-- <c:if test="${lis.status == true}">
 																<i class="tim-icons icon-check-2"></i>
 												</c:if>
 												<c:if test="${lis.status == false}">
@@ -149,14 +143,15 @@
 												</td>
 												
 												<td>
-													<a href="/Laptop/shipper/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
+													<a href="/Laptop/admin/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
 												</td> --%>
-												</tr>
-											</c:forEach>
+													</tr>
+<%-- 													</c:forEach>
+ --%>												</c:forEach>
 
-										</tbody>
+											</tbody>
 
-									</table>
+										</table>
 								</div>
 							</div>
 
@@ -165,31 +160,31 @@
 									<c:if test="${numberPage == 1}">
 
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=1">1</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=1">1</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=2">2</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=2">2</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage+1}">Next</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=${numberPage+1}">Next</a></li>
 									</c:if>
 
 									<c:if test="${numberPage == maxPageId}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage-1}">Prev</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=${numberPage-1}">Prev</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=1">1</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=1">1</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=2">2</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=2">2</a></li>
 									</c:if>
 
 									<c:if test="${numberPage > 1 && numberPage < maxPageId}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage-1}">Prev</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=${numberPage-1}">Prev</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=1">1</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=1">1</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=2">2</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=2">2</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage+1}">Next</a></li>
+											href="<%=request.getContextPath()%>/admin/pending?page=${numberPage+1}">Next</a></li>
 									</c:if>
 								</ul>
 

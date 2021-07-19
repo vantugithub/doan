@@ -33,6 +33,15 @@
 	<link rel="stylesheet" href="Template/Cart/css.css">
 </head>
 <body>
+	<%
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Cache-Control", "no-store");
+	response.setHeader("Pragma", "no-cache");
+	response.setDateHeader("Expires", 0);
+
+	if (session.getAttribute("cart") == null)
+		response.sendRedirect("/Laptop/");
+	%>
 <jsp:include page="Header.jsp"/>
 	<div id="page">
 	
@@ -98,14 +107,13 @@
 		   
 		
 				<c:if test="${list.size()>0}">
-				<th colspan="5">Total</th>
-			<th><fmt:formatNumber type="number" maxFractionDigits="3"
-					value="${s}" /></th>	
+				<div style="text-align: right">Total: <fmt:formatNumber type="number" maxFractionDigits="3"
+					value="${s}" /></div>
 				<div >
 				
 					<form action="${pageContext.request.contextPath}/checkout?total=${s}"
 						method="post" >
-						<p style="text-align: center;"><input type="submit" class="btn btn-success btn-outline" value="Checkout"
+						<p style="text-align: center"><input type="submit" class="btn btn-success btn-outline" value="Checkout"
 							style="margin: 0 auto"></p>
 					</form>
 				</div>
@@ -147,7 +155,7 @@
 						/* document.getElementById("users").innerHTML = data; */
 					}
 				}
-				xhttp.open("GET", url, true);
+				xhttp.open("POST", url, true);
 				xhttp.send();
 		}
 		
@@ -167,7 +175,7 @@
 						document.getElementById("listProduct").innerHTML = data; 
 					}
 				}
-				xhttp.open("GET", url, true);
+				xhttp.open("POST", url, true);
 				xhttp.send();
 		}
 	

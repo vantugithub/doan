@@ -21,7 +21,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>History</title>
+<title>Detail</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -53,7 +53,7 @@
 	if (session.getAttribute("USERMODEL") != null) {
 		MyUser myUser = (MyUser) session.getAttribute("USERMODEL");
 		Role role = myUser.getRole();
-		if (role.getRoleName().equals("ROLE_SHIPPER") == false) {
+		if (role.getRoleName().equals("ROLE_ADMIN") == false) {
 			response.sendRedirect("/Laptop/Login");
 		}
 	}
@@ -79,46 +79,38 @@
 					<div class="col-md-12">
 
 						<div class="card ">
-							<%
-							if (request.getAttribute("mess") == ("Created Success")) {
-							%>
-							<div class="alert alert-success" role="alert">This is a
-								success alert—check it out!</div>
-							<%
-							} else if (request.getAttribute("mess") == ("Created Failded")) {
-							%>
-							<div class="alert alert-danger" role="alert">This is a
-								danger alert—check it out!</div>
-							<%
-							} else {
-							}
-							%>
-
-
 							<div class="card-header">
-								<h4 class="card-title">History</h4>
 							</div>
-
+							<c:forEach items="${list2}" var="lis2">
+								<div class="card-body">
+									<div  style="margin: auto">
+									<table style="margin-left:150px; color: rgba(255, 255, 255, 0.7)"  >
+										<tr >
+											<th style="padding-right: 20px" >Fullname</th>
+											<td>${lis2.name}</td>
+										</tr>
+										<tr>
+											<th>Phone </th>
+											<td>${lis2.phone}</td>
+										</tr>
+										<tr>
+											<th>Address</th>
+											<td>${lis2.address}</td>
+										</tr>
+									</table>
+									</div>
+							</c:forEach>
 							<div class="card-body">
 
 								<div class="">
-								<c:if test="${not empty list}">
-								
-									<table class="table tablesorter " id=""
-										style="text-align: center">
+									<table class="table tablesorter " id="">
 
 										<thead class=" text-primary">
 											<tr>
-												<th>Id</th>
 												<th>Name</th>
-												<th>Phone</th>
-												<th>Address</th>
-												<th>OrderDate</th>
-												<th>Total</th>
-												<th>Status</th>
-												<th>View</th>
-												<!-- <th>Edit </th>
-												<th>Description</th> -->
+												<th>Quantity</th>
+												<th>Price</th>
+
 											</tr>
 										</thead>
 
@@ -126,84 +118,50 @@
 
 											<c:forEach items="${list}" var="lis">
 												<tr>
-													<td>${lis.id}</td>
-													<td>${lis.name}</td>
-													<td>${lis.phone}</td>
-													<td>${lis.address}</td>
-													<td>${lis.orderDate}</td>
-													<td>${lis.total}</td>
-													<c:if test="${lis.status=='Success'}">
-														<th style="color: #1d8cf8">${lis.status}</th>
-													</c:if>
-													
-													<%-- <th><input class="btn btn-primary  btn-sm"
-														value="${lis.status}" style="width: 40%"></th> --%>
-													<td><a href="/Laptop/shipper/detailorder?id=${lis.id}"><i
-															class="tim-icons icon-zoom-split"></i></a></td>
-													<%-- <c:if test="${lis.status == true}">
-																<i class="tim-icons icon-check-2"></i>
-												</c:if>
-												<c:if test="${lis.status == false}">
-																<i class="tim-icons icon-simple-remove"></i>
-												</c:if>
-												</td>
-												
-												<td>
-													<a href="/Laptop/shipper/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
-												</td> --%>
+													<td>${lis.product.name}</td>
+													<td>${lis.quantity}</td>
+													<td>${lis.price}</td>
 												</tr>
 											</c:forEach>
 
 										</tbody>
 
 									</table>
+									<div style="text-align: right; padding-right: 140px">
+									<c:forEach items="${list2}" var="lis2">
+										<h4><b>Total:</b> ${lis2.total}</h4>
+									</c:forEach>
+								</div>
+									<%
+									if (request.getParameter("change") != null) {
+									%>
+									<div style="text-align: center">
+										<button class="btn btn-success" data-toggle="modal"
+											data-target="#exampleModal">
+											<a
+												href="/Laptop/admin/acceptOrder?orderId=<%=request.getParameter("id")%>"
+												style="color: white">Accept</a>
+										</button>
+										<button class="btn btn-primary" data-toggle="modal"
+											data-target="#exampleModal">
+											<a
+												href="/Laptop/admin/cancelOrder?orderId=<%=request.getParameter("id")%>"
+												style="color: white">Cancel</a>
+										</button>
+									</div>
+									<%
+									}
+									%>
 								</div>
 							</div>
 
-							<div>
-								<ul class="pagination">
-									<c:if test="${numberPage == 1}">
-
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=1">1</a></li>
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=2">2</a></li>
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage+1}">Next</a></li>
-									</c:if>
-
-									<c:if test="${numberPage == maxPageId}">
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage-1}">Prev</a></li>
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=1">1</a></li>
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=2">2</a></li>
-									</c:if>
-
-									<c:if test="${numberPage > 1 && numberPage < maxPageId}">
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage-1}">Prev</a></li>
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=1">1</a></li>
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=2">2</a></li>
-										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage+1}">Next</a></li>
-									</c:if>
-								</ul>
-
-							</div>
-							</c:if>
-							<c:if test="${empty list}">
-								<h4>No items</h4>
-							</c:if>
+							<div></div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!--Begin footer -->
-			<jsp:include page="Footer.jsp" />
+			
 			<!-- End Footer -->
 		</div>
 	</div>

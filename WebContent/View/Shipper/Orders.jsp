@@ -14,9 +14,11 @@
 <link rel="icon" type="image/png"
 	href="<%=request.getContextPath()%>/Template/Admin/img/favicon.png">
 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <title>Orders</title>
@@ -40,22 +42,22 @@
 </head>
 <body>
 
-<%
-response.setHeader("Cache-Control","no-cache");
-response.setHeader("Cache-Control","no-store");
-response.setHeader("Pragma","no-cache");
-response.setDateHeader ("Expires", 0);
+	<%
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Cache-Control", "no-store");
+	response.setHeader("Pragma", "no-cache");
+	response.setDateHeader("Expires", 0);
 
-if(session.getAttribute("USERMODEL")==null)
-    response.sendRedirect("/Laptop/Login");
-if(session.getAttribute("USERMODEL")!=null) {
-	MyUser myUser =(MyUser) session.getAttribute("USERMODEL");
-	Role role = myUser.getRole();
-	if(role.getRoleName().equals("ROLE_SHIPPER")==false){
+	if (session.getAttribute("USERMODEL") == null)
 		response.sendRedirect("/Laptop/Login");
+	if (session.getAttribute("USERMODEL") != null) {
+		MyUser myUser = (MyUser) session.getAttribute("USERMODEL");
+		Role role = myUser.getRole();
+		if (role.getRoleName().equals("ROLE_SHIPPER") == false) {
+			response.sendRedirect("/Laptop/Login");
+		}
 	}
-}
-%>
+	%>
 
 
 	<div class="wrapper">
@@ -75,44 +77,48 @@ if(session.getAttribute("USERMODEL")!=null) {
 			<div class="content">
 				<div class="row">
 					<div class="col-md-12">
-					
+
 						<div class="card ">
-						
+
 							<div class="card-header">
 								<h4 class="card-title">List of orders</h4>
 							</div>
-							
+
 							<div class="card-body">
-							
+
 								<div class="">
-									<table class="table tablesorter " id="">
-									
-										<thead class=" text-primary">
-											<tr>
-												<th>Id</th>
-												<th>Name</th>
-												<th>Phone</th>
-												<th>Address</th>
-												<th>OrderDate</th>
-												<th>Total</th>
-												<th>View</th>
-												<!-- <th>Edit </th>
+									<c:if test="${not empty list}">
+										<table class="table tablesorter " id="" style="text-align: center">
+
+											<thead class=" text-primary">
+												<tr>
+													<th>Id</th>
+													<th>Name</th>
+													<th>Phone</th>
+													<th>Address</th>
+													<th>OrderDate</th>
+													<th>Total</th>
+													<th>View</th>
+													<!-- <th>Edit </th>
 												<th>Description</th> -->
-											</tr>
-										</thead>
-										
-										<tbody>
-										
-											<c:forEach items="${list}" var="lis">
-											<tr>
-												<td>${lis.id}</td>
-												<td>${lis.name}</td>
-												<td>${lis.phone}</td>
-												<td>${lis.address}</td>
-												<td>${lis.orderDate}</td>
-												<th>${lis.total}</th>
-												<td><a href="/Laptop/shipper/detailorder?id=${lis.id}&change=1"><i class="tim-icons icon-zoom-split" ></i></a></td>
-												<%-- <c:if test="${lis.status == true}">
+												</tr>
+											</thead>
+
+											<tbody>
+
+												<c:forEach items="${list}" var="lis">
+
+													<tr>
+														<td>${lis.id}</td>
+														<td>${lis.name}</td>
+														<td>${lis.phone}</td>
+														<td>${lis.address}</td>
+														<td>${lis.orderDate}</td>
+														<td>${lis.total}</td>
+														<td><a
+															href="/Laptop/shipper/detailorder?id=${lis.id}&change=1"><i
+																class="tim-icons icon-zoom-split"></i></a></td>
+														<%-- <c:if test="${lis.status == true}">
 																<i class="tim-icons icon-check-2"></i>
 												</c:if>
 												<c:if test="${lis.status == false}">
@@ -123,43 +129,53 @@ if(session.getAttribute("USERMODEL")!=null) {
 												<td>
 													<a href="/Laptop/shipper/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
 												</td> --%>
-											</tr>
-											</c:forEach>
-										
-										</tbody>
-										
-									</table>
+													</tr>
+												</c:forEach>
+
+											</tbody>
+
+										</table>
 								</div>
 							</div>
-							
-							<div >
-				<ul class="pagination">
-					<c:if test="${numberPage == 1}">
 
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=2">2</a></li>
-						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage+1}">Next</a></li>
-					</c:if>
+							<div>
+								<ul class="pagination">
+									<c:if test="${numberPage == 1}">
 
-					<c:if test="${numberPage == maxPageId}">
-						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage-1}">Prev</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=2">2</a></li>
-					</c:if>
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=1">1</a></li>
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=2">2</a></li>
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage+1}">Next</a></li>
+									</c:if>
 
-					<c:if test="${numberPage > 1 && numberPage < maxPageId}">
-						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage-1}">Prev</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/shipper/orders?page=2">2</a></li>
-						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage+1}">Next</a></li>
-					</c:if>
-				</ul>
+									<c:if test="${numberPage == maxPageId}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage-1}">Prev</a></li>
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=1">1</a></li>
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=2">2</a></li>
+									</c:if>
 
-			</div>
+									<c:if test="${numberPage > 1 && numberPage < maxPageId}">
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage-1}">Prev</a></li>
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=1">1</a></li>
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=2">2</a></li>
+										<li class="page-item"><a class="page-link"
+											href="<%=request.getContextPath()%>/shipper/orders?page=${numberPage+1}">Next</a></li>
+									</c:if>
+								</ul>
+
+							</div>
+							</c:if>
+							<c:if test="${empty list}">
+								<h4>No items</h4>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -170,10 +186,10 @@ if(session.getAttribute("USERMODEL")!=null) {
 		</div>
 	</div>
 
-	
 
 
-	
+
+
 	<script
 		src="<%=request.getContextPath()%>/Template/Admin/js/core/jquery.min.js"></script>
 	<script
@@ -197,123 +213,204 @@ if(session.getAttribute("USERMODEL")!=null) {
 	<!-- Black Dashboard DEMO methods, don't include it in your project! -->
 	<script src="<%=request.getContextPath()%>/Template/Admin/demo/demo.js"></script>
 	<script>
-    $(document).ready(function() {
-      $().ready(function() {
-        $sidebar = $('.sidebar');
-        $navbar = $('.navbar');
-        $main_panel = $('.main-panel');
+		$(document)
+				.ready(
+						function() {
+							$()
+									.ready(
+											function() {
+												$sidebar = $('.sidebar');
+												$navbar = $('.navbar');
+												$main_panel = $('.main-panel');
 
-        $full_page = $('.full-page');
+												$full_page = $('.full-page');
 
-        $sidebar_responsive = $('body > .navbar-collapse');
-        sidebar_mini_active = true;
-        white_color = false;
+												$sidebar_responsive = $('body > .navbar-collapse');
+												sidebar_mini_active = true;
+												white_color = false;
 
-        window_width = $(window).width();
+												window_width = $(window)
+														.width();
 
-        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+												fixed_plugin_open = $(
+														'.sidebar .sidebar-wrapper .nav li.active a p')
+														.html();
 
+												$('.fixed-plugin a')
+														.click(
+																function(event) {
+																	if ($(this)
+																			.hasClass(
+																					'switch-trigger')) {
+																		if (event.stopPropagation) {
+																			event
+																					.stopPropagation();
+																		} else if (window.event) {
+																			window.event.cancelBubble = true;
+																		}
+																	}
+																});
 
+												$(
+														'.fixed-plugin .background-color span')
+														.click(
+																function() {
+																	$(this)
+																			.siblings()
+																			.removeClass(
+																					'active');
+																	$(this)
+																			.addClass(
+																					'active');
 
-        $('.fixed-plugin a').click(function(event) {
-          if ($(this).hasClass('switch-trigger')) {
-            if (event.stopPropagation) {
-              event.stopPropagation();
-            } else if (window.event) {
-              window.event.cancelBubble = true;
-            }
-          }
-        });
+																	var new_color = $(
+																			this)
+																			.data(
+																					'color');
 
-        $('.fixed-plugin .background-color span').click(function() {
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
+																	if ($sidebar.length != 0) {
+																		$sidebar
+																				.attr(
+																						'data',
+																						new_color);
+																	}
 
-          var new_color = $(this).data('color');
+																	if ($main_panel.length != 0) {
+																		$main_panel
+																				.attr(
+																						'data',
+																						new_color);
+																	}
 
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data', new_color);
-          }
+																	if ($full_page.length != 0) {
+																		$full_page
+																				.attr(
+																						'filter-color',
+																						new_color);
+																	}
 
-          if ($main_panel.length != 0) {
-            $main_panel.attr('data', new_color);
-          }
+																	if ($sidebar_responsive.length != 0) {
+																		$sidebar_responsive
+																				.attr(
+																						'data',
+																						new_color);
+																	}
+																});
 
-          if ($full_page.length != 0) {
-            $full_page.attr('filter-color', new_color);
-          }
+												$('.switch-sidebar-mini input')
+														.on(
+																"switchChange.bootstrapSwitch",
+																function() {
+																	var $btn = $(this);
 
-          if ($sidebar_responsive.length != 0) {
-            $sidebar_responsive.attr('data', new_color);
-          }
-        });
+																	if (sidebar_mini_active == true) {
+																		$(
+																				'body')
+																				.removeClass(
+																						'sidebar-mini');
+																		sidebar_mini_active = false;
+																		blackDashboard
+																				.showSidebarMessage('Sidebar mini deactivated...');
+																	} else {
+																		$(
+																				'body')
+																				.addClass(
+																						'sidebar-mini');
+																		sidebar_mini_active = true;
+																		blackDashboard
+																				.showSidebarMessage('Sidebar mini activated...');
+																	}
 
-        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
-          var $btn = $(this);
+																	// we simulate the window Resize so the charts will get updated in realtime.
+																	var simulateWindowResize = setInterval(
+																			function() {
+																				window
+																						.dispatchEvent(new Event(
+																								'resize'));
+																			},
+																			180);
 
-          if (sidebar_mini_active == true) {
-            $('body').removeClass('sidebar-mini');
-            sidebar_mini_active = false;
-            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
-          } else {
-            $('body').addClass('sidebar-mini');
-            sidebar_mini_active = true;
-            blackDashboard.showSidebarMessage('Sidebar mini activated...');
-          }
+																	// we stop the simulation of Window Resize after the animations are completed
+																	setTimeout(
+																			function() {
+																				clearInterval(simulateWindowResize);
+																			},
+																			1000);
+																});
 
-          // we simulate the window Resize so the charts will get updated in realtime.
-          var simulateWindowResize = setInterval(function() {
-            window.dispatchEvent(new Event('resize'));
-          }, 180);
+												$('.switch-change-color input')
+														.on(
+																"switchChange.bootstrapSwitch",
+																function() {
+																	var $btn = $(this);
 
-          // we stop the simulation of Window Resize after the animations are completed
-          setTimeout(function() {
-            clearInterval(simulateWindowResize);
-          }, 1000);
-        });
+																	if (white_color == true) {
 
-        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
-          var $btn = $(this);
+																		$(
+																				'body')
+																				.addClass(
+																						'change-background');
+																		setTimeout(
+																				function() {
+																					$(
+																							'body')
+																							.removeClass(
+																									'change-background');
+																					$(
+																							'body')
+																							.removeClass(
+																									'white-content');
+																				},
+																				900);
+																		white_color = false;
+																	} else {
 
-          if (white_color == true) {
+																		$(
+																				'body')
+																				.addClass(
+																						'change-background');
+																		setTimeout(
+																				function() {
+																					$(
+																							'body')
+																							.removeClass(
+																									'change-background');
+																					$(
+																							'body')
+																							.addClass(
+																									'white-content');
+																				},
+																				900);
 
-            $('body').addClass('change-background');
-            setTimeout(function() {
-              $('body').removeClass('change-background');
-              $('body').removeClass('white-content');
-            }, 900);
-            white_color = false;
-          } else {
+																		white_color = true;
+																	}
 
-            $('body').addClass('change-background');
-            setTimeout(function() {
-              $('body').removeClass('change-background');
-              $('body').addClass('white-content');
-            }, 900);
+																});
 
-            white_color = true;
-          }
+												$('.light-badge')
+														.click(
+																function() {
+																	$('body')
+																			.addClass(
+																					'white-content');
+																});
 
-
-        });
-
-        $('.light-badge').click(function() {
-          $('body').addClass('white-content');
-        });
-
-        $('.dark-badge').click(function() {
-          $('body').removeClass('white-content');
-        });
-      });
-    });
-  </script>
+												$('.dark-badge')
+														.click(
+																function() {
+																	$('body')
+																			.removeClass(
+																					'white-content');
+																});
+											});
+						});
+	</script>
 	<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
 	<script>
-    window.TrackJS &&
-      TrackJS.install({
-        token: "ee6fab19c5a04ac1a32a645abde4613a",
-        application: "black-dashboard-free"
-      });
-  </script>
+		window.TrackJS && TrackJS.install({
+			token : "ee6fab19c5a04ac1a32a645abde4613a",
+			application : "black-dashboard-free"
+		});
+	</script>
 </body>
 </html>

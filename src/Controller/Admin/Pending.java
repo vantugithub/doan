@@ -1,7 +1,8 @@
-package Controller.Seller;
+package Controller.Admin;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,72 +11,53 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import BEAN.Category;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+
+import BEAN.MyUser;
 import BEAN.Order;
-import BEAN.Product;
 import DAO.OrderDAO;
-import DAO.ProductDAO;
+import DAO.UserDAO;
 import DB.DBConnection;
 
 /**
- * Servlet implementation class ListOfOrder
+ * Servlet implementation class Pending
  */
-@WebServlet("/seller/orders")
-public class ListOfOrder extends HttpServlet {
+@WebServlet("/admin/pending")
+public class Pending extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListOfOrder() {
+    public Pending() {
         super();
         // TODO Auto-generated constructor stub
     }
-    private OrderDAO orderDAO;
-
-
+	private OrderDAO orderDAO;
+	private UserDAO userDAO;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Connection conn = DBConnection.creatConnection();
-		int count = 5;
-		String idPageStr = request.getParameter("page");
-
-		int pageId = Integer.parseInt(idPageStr);
-		if(pageId == 1 ) {
-
-		}
-		else {
-			pageId = pageId - 1;
-			pageId = pageId * count + 1;
-		}
+	Connection conn = DBConnection.creatConnection();
 		
-		int sumRow = orderDAO.countRowOfOrders(conn);
+		List<Order> list = orderDAO.pending(conn);
 		
-		int maxPageId;
-		if((sumRow/count)%2==0) 
-		{
-			maxPageId = (sumRow/count);
+		List<MyUser> saleList = new ArrayList<MyUser>();
+		for(Order item : list) {
+			String idSaleStr = item.getIdSale();
+			int idSale = Integer.parseInt(idSaleStr);
+			MyUser sale = userDAO.getProfileUser(conn,idSale);;
+			saleList.add(sale);
 		}
-		else 
-		{
-			maxPageId = (sumRow/count)+1;
-		}
-		
-		request.setAttribute("sum",sumRow);
-		request.setAttribute("maxPageId", maxPageId);
-		request.setAttribute("numberPage",Integer.parseInt(idPageStr));
-		
-		List<Order> list = orderDAO.paginationOrders(conn, pageId, count);
-//		List<Category> listt = categoryDAO.getAllOfCategory(conn);
 		
 		request.setAttribute("list", list);
-//		request.setAttribute("listt", listt);
-		
-		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/View/Seller/Orders.jsp");
+		request.setAttribute("saleList", saleList);
+
+		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/View/Admin/Pending.jsp");
 		rd.forward(request, response);
 	}
 

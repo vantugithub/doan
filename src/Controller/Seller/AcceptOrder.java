@@ -43,7 +43,6 @@ public class AcceptOrder extends HttpServlet {
 		HttpSession httpSession = request.getSession(false);
 		MyUser user = (MyUser) httpSession.getAttribute("USERMODEL");
 		int idSale = user.getId();
-		System.out.println(idOfOrder + "  " +  idSale);
 		dao.changeStatus(conn, idOfOrder, idSale);
 //		request.setAttribute("list", list);
 //		RequestDispatcher rd = request.getRequestDispatcher("/View/Seller/OrderItem.jsp");

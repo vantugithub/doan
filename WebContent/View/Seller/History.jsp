@@ -96,12 +96,14 @@
 
 
 							<div class="card-header">
-								<h4 class="card-title">List of orders</h4>
+								<h4 class="card-title">History</h4>
 							</div>
 
 							<div class="card-body">
 
 								<div class="">
+								<c:if test="${not empty list}">
+								
 									<table class="table tablesorter " id=""
 										style="text-align: center">
 
@@ -129,18 +131,12 @@
 													<td>${lis.phone}</td>
 													<td>${lis.address}</td>
 													<td>${lis.orderDate}</td>
-													<th>${lis.total}</th>
-													<c:if test="${lis.status=='Shipping'}">
-														<th><input class="btn btn-light  btn-sm"
-															value="${lis.status}" style="width: 40%"></th>
-													</c:if>
+													<td>${lis.total}</td>
 													<c:if test="${lis.status=='Success'}">
-														<th><input class="btn btn-success  btn-sm"
-															value="${lis.status}" style="width: 40%"></th>
+														<th style="color: #1d8cf8">${lis.status}</th>
 													</c:if>
 													<c:if test="${lis.status=='Reject'}">
-														<th><input class="btn btn-danger  btn-sm"
-															value="${lis.status}" style="width: 40%"></th>
+															<th style="color: red">${lis.status}</th>
 													</c:if>
 													<td><a href="/Laptop/seller/detailorder?id=${lis.id}"><i
 															class="tim-icons icon-zoom-split"></i></a></td>
@@ -169,35 +165,39 @@
 									<c:if test="${numberPage == 1}">
 
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=1">1</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=1">1</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=2">2</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=2">2</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=${numberPage+1}">Next</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=${numberPage+1}">Next</a></li>
 									</c:if>
 
 									<c:if test="${numberPage == maxPageId}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=${numberPage-1}">Prev</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=${numberPage-1}">Prev</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=1">1</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=1">1</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=2">2</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=2">2</a></li>
 									</c:if>
 
 									<c:if test="${numberPage > 1 && numberPage < maxPageId}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=${numberPage-1}">Prev</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=${numberPage-1}">Prev</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=1">1</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=1">1</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=2">2</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=2">2</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/seller/orders?page=${numberPage+1}">Next</a></li>
+											href="<%=request.getContextPath()%>/seller/history?page=${numberPage+1}">Next</a></li>
 									</c:if>
 								</ul>
 
 							</div>
+							</c:if>
+							<c:if test="${empty list}">
+								<h4>No items</h4>
+							</c:if>
 						</div>
 					</div>
 				</div>

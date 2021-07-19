@@ -1,4 +1,4 @@
-package Controller.Seller;
+package Controller.Admin;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,71 +11,46 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import BEAN.Category;
+import BEAN.ListItem;
 import BEAN.Order;
 import BEAN.Product;
 import DAO.OrderDAO;
+import DAO.OrderItems;
 import DAO.ProductDAO;
 import DB.DBConnection;
 
 /**
- * Servlet implementation class ListOfOrder
+ * Servlet implementation class OrderDetail
  */
-@WebServlet("/seller/orders")
-public class ListOfOrder extends HttpServlet {
+@WebServlet("/admin/detailorder")
+public class OrderDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListOfOrder() {
+    public OrderDetail() {
         super();
         // TODO Auto-generated constructor stub
     }
-    private OrderDAO orderDAO;
-
+	private OrderItems dao;
+	private OrderDAO orderDao;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String idStr = request.getParameter("id");
+		int idOfOrder = Integer.parseInt(idStr);
 		Connection conn = DBConnection.creatConnection();
-		int count = 5;
-		String idPageStr = request.getParameter("page");
-
-		int pageId = Integer.parseInt(idPageStr);
-		if(pageId == 1 ) {
-
-		}
-		else {
-			pageId = pageId - 1;
-			pageId = pageId * count + 1;
-		}
-		
-		int sumRow = orderDAO.countRowOfOrders(conn);
-		
-		int maxPageId;
-		if((sumRow/count)%2==0) 
-		{
-			maxPageId = (sumRow/count);
-		}
-		else 
-		{
-			maxPageId = (sumRow/count)+1;
-		}
-		
-		request.setAttribute("sum",sumRow);
-		request.setAttribute("maxPageId", maxPageId);
-		request.setAttribute("numberPage",Integer.parseInt(idPageStr));
-		
-		List<Order> list = orderDAO.paginationOrders(conn, pageId, count);
-//		List<Category> listt = categoryDAO.getAllOfCategory(conn);
-		
+		@SuppressWarnings("static-access")
+		List<ListItem> list  = dao.findOrderById(conn, idOfOrder);
 		request.setAttribute("list", list);
-//		request.setAttribute("listt", listt);
 		
-		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/View/Seller/Orders.jsp");
+		List<Order> list2  = orderDao.getOrderByID(conn, idOfOrder);
+		request.setAttribute("list2", list2);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/View/Admin/OrderItem.jsp");
 		rd.forward(request, response);
 	}
 

@@ -21,6 +21,7 @@ import BEAN.Product;
 import DAO.OrderDAO;
 import DAO.OrderItems;
 import DB.DBConnection;
+import SessionUtils.SessionUtil;
 
 /**
  * Servlet implementation class Success
@@ -73,6 +74,10 @@ public class Success extends HttpServlet {
 			long prodId = prod.getId();
 			long price = prod.getPrice();
 			hi.insertOrderItems(conn, orderId, prodId, quantity, price);
+		}
+		
+		if(httpSession.getAttribute("cart") != null) {
+			SessionUtil.getInstance().removeValue(request,"cart" );
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/View/Web/Success.jsp");

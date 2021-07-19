@@ -51,7 +51,7 @@ if(session.getAttribute("USERMODEL")==null)
 if(session.getAttribute("USERMODEL")!=null) {
 	MyUser myUser =(MyUser) session.getAttribute("USERMODEL");
 	Role role = myUser.getRole();
-	if(role.getRoleName().equals("ROLE_SELLER")==false){
+	if(role.getRoleName().equals("ROLE_ADMIN")==false){
 		response.sendRedirect("/Laptop/Login");
 	}
 }
@@ -134,7 +134,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 												<td>${lis.address}</td>
 												<td>${lis.orderDate}</td>
 												<td>${lis.total}</td>
-												<td><a href="/Laptop/seller/detailorder?id=${lis.id}&change=1"><i class="tim-icons icon-zoom-split" ></i></a></td>
+												<td><a href="/Laptop/admin/detailorder?id=${lis.id}&change=1"><i class="tim-icons icon-zoom-split" ></i></a></td>
 												<%-- <c:if test="${lis.status == true}">
 																<i class="tim-icons icon-check-2"></i>
 												</c:if>
@@ -144,7 +144,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 												</td>
 												
 												<td>
-													<a href="/Laptop/seller/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
+													<a href="/Laptop/admin/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
 												</td> --%>
 											</tr>
 											</c:forEach>
@@ -159,26 +159,26 @@ if(session.getAttribute("USERMODEL")!=null) {
 				<ul class="pagination">
 					<c:if test="${numberPage == 1}">
 
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/orders?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/orders?page=2">2</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/admin/orders?page=1">1</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/admin/orders?page=2">2</a></li>
 						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/orders?page=${numberPage+1}">Next</a></li>
+							href="<%=request.getContextPath()%>/admin/orders?page=${numberPage+1}">Next</a></li>
 					</c:if>
 
 					<c:if test="${numberPage == maxPageId}">
 						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/orders?page=${numberPage-1}">Prev</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/orders?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/orders?page=2">2</a></li>
+							href="<%=request.getContextPath()%>/admin/orders?page=${numberPage-1}">Prev</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/admin/orders?page=1">1</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/admin/orders?page=2">2</a></li>
 					</c:if>
 
 					<c:if test="${numberPage > 1 && numberPage < maxPageId}">
 						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/orders?page=${numberPage-1}">Prev</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/orders?page=1">1</a></li>
-						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/seller/orders?page=2">2</a></li>
+							href="<%=request.getContextPath()%>/admin/orders?page=${numberPage-1}">Prev</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/admin/orders?page=1">1</a></li>
+						<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/admin/orders?page=2">2</a></li>
 						<li class="page-item"><a class="page-link"
-							href="<%=request.getContextPath()%>/seller/orders?page=${numberPage+1}">Next</a></li>
+							href="<%=request.getContextPath()%>/admin/orders?page=${numberPage+1}">Next</a></li>
 					</c:if>
 				</ul>
 

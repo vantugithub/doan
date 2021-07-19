@@ -43,9 +43,29 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/Laptop/admin/orders?page=1">
               <i class="tim-icons icon-align-center"></i>
               <p>Order management</p>
+            </a>
+          </li>
+           <li>
+            <a href="/Laptop/admin/pending?page=1">
+              <i class="tim-icons icon-refresh-02"></i>
+              <p>Pending</p>
+            </a>
+          </li>
+          
+           <li>
+            <a href="/Laptop/admin/shipping?page=1">
+              <i class="tim-icons icon-delivery-fast"></i>
+              <p>Shipping</p>
+            </a>
+          </li>
+          
+          <li>
+            <a href="/Laptop/admin/history">
+              <i class="tim-icons icon-notes"></i>
+              <p>History</p>
             </a>
           </li>
           <li class="active-pro">

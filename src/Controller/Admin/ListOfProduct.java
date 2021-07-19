@@ -33,6 +33,7 @@ public class ListOfProduct extends HttpServlet {
 		Connection conn = DBConnection.creatConnection();
 		int count = 5;
 		String idPageStr = request.getParameter("page");
+
 		int pageId = Integer.parseInt(idPageStr);
 		if(pageId == 1 ) {
 

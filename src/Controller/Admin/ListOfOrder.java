@@ -1,4 +1,4 @@
-package Controller.Seller;
+package Controller.Admin;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,7 +21,7 @@ import DB.DBConnection;
 /**
  * Servlet implementation class ListOfOrder
  */
-@WebServlet("/seller/orders")
+@WebServlet("/admin/orders")
 public class ListOfOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -75,7 +75,7 @@ public class ListOfOrder extends HttpServlet {
 		request.setAttribute("list", list);
 //		request.setAttribute("listt", listt);
 		
-		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/View/Seller/Orders.jsp");
+		RequestDispatcher rd = request.getServletContext().getRequestDispatcher("/View/Admin/Orders.jsp");
 		rd.forward(request, response);
 	}
 

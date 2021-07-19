@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Check Out</title>
 <link rel="stylesheet" href="Template/shop/css/animate.css">
 <!-- Icomoon Icon Fonts-->
 <link rel="stylesheet" href="Template/shop/css/icomoon.css">
@@ -58,11 +58,25 @@
 
 </head>
 <body>
+	<%
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Cache-Control", "no-store");
+	response.setHeader("Pragma", "no-cache");
+	response.setDateHeader("Expires", 0);
+
+	if (session.getAttribute("cart") == null)
+		response.sendRedirect("/Laptop/");
+	%>
 	<jsp:include page="Header.jsp" />
+
 	<div class="col-md-4 animate-box" style="margin-left: 20px">
+		<%-- <%if(session.getAttribute("successToken") != null)
+		%>
+ 		<div>TOKEN LÀ: <input type="text" value="<%=session.getAttribute("successToken") %>" /> --%>
+
 
 		<form action="${pageContext.request.contextPath}/success?total=${s}"
-			method="post">
+			 method="post">
 			<div class="row form-group">
 				<div class="col-md-12">
 					<label for="email">Full name</label> <input type="text"
@@ -95,7 +109,7 @@
 
 				<p style="text-align: center;">
 					<input type="submit" class="btn btn-success btn-outline"
-						value="Checkout" style="margin: 0 auto">
+						value="Place Order" style="margin: 0 auto">
 				</p>
 		</form>
 	</div>
@@ -163,7 +177,22 @@
 		</c:if>
 
 	</div>
-
+	<script>
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>
+	<!-- <script>
+    (function($){
+        $("body").on("submit", ".my-form", function(e){
+            e.preventDefault();
+            var form = $(e.target);
+            $.post( form.attr("action"), form.serialize(), function(res){
+                console.log(res);
+            });
+        });
+    )(jQuery);
+</script> -->
 
 
 	<jsp:include page="Footer.jsp" />

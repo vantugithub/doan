@@ -1,4 +1,4 @@
-package Controller.Shipper;
+package Controller.Admin;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -20,7 +20,7 @@ import DB.DBConnection;
 /**
  * Servlet implementation class AcceptOrder
  */
-@WebServlet("/shipper/acceptOrder")
+@WebServlet("/admin/acceptOrder")
 public class AcceptOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,12 +42,13 @@ public class AcceptOrder extends HttpServlet {
 		
 		HttpSession httpSession = request.getSession(false);
 		MyUser user = (MyUser) httpSession.getAttribute("USERMODEL");
-		int idShipper = user.getId();
-		dao.acceptShip(conn, idOfOrder, idShipper);
+		int idAdmin = user.getId();
+
+		dao.changeStatus(conn, idOfOrder, idAdmin);
 //		request.setAttribute("list", list);
 //		RequestDispatcher rd = request.getRequestDispatcher("/View/Seller/OrderItem.jsp");
 //		rd.forward(request, response);
-		 response.sendRedirect("http://localhost:8080/Laptop/shipper/orders?page=1");
+		 response.sendRedirect("http://localhost:8080/Laptop/admin/orders?page=1");
 	}
 
 	/**

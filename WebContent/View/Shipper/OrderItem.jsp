@@ -21,7 +21,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>Order Detail</title>
+<title>Detail</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -142,12 +142,12 @@
 											href="/Laptop/shipper/acceptOrder?orderId=<%=request.getParameter("id")%>"
 											style="color: white">Accept</a>
 									</button>
-									<button class="btn btn-primary" data-toggle="modal"
+									<%-- <button class="btn btn-primary" data-toggle="modal"
 										data-target="#exampleModal">
 										<a
 											href="/Laptop/shipper/cancelOrder?orderId=<%=request.getParameter("id")%>"
 											style="color: white">Cancel</a>
-									</button>
+									</button> --%>
 								</div>
 								<%
 								}

@@ -53,7 +53,7 @@
 	if (session.getAttribute("USERMODEL") != null) {
 		MyUser myUser = (MyUser) session.getAttribute("USERMODEL");
 		Role role = myUser.getRole();
-		if (role.getRoleName().equals("ROLE_SHIPPER") == false) {
+		if (role.getRoleName().equals("ROLE_ADMIN") == false) {
 			response.sendRedirect("/Laptop/Login");
 		}
 	}
@@ -96,7 +96,7 @@
 
 
 							<div class="card-header">
-								<h4 class="card-title">History</h4>
+								<h4 class="card-title">Transaction history</h4>
 							</div>
 
 							<div class="card-body">
@@ -114,6 +114,8 @@
 												<th>Phone</th>
 												<th>Address</th>
 												<th>OrderDate</th>
+												<th>Sale</th>
+												<th>Shipper</th>
 												<th>Total</th>
 												<th>Status</th>
 												<th>View</th>
@@ -124,21 +126,23 @@
 
 										<tbody>
 
-											<c:forEach items="${list}" var="lis">
+											<c:forEach items="${list}" var="lis" varStatus="status">
 												<tr>
 													<td>${lis.id}</td>
 													<td>${lis.name}</td>
 													<td>${lis.phone}</td>
 													<td>${lis.address}</td>
 													<td>${lis.orderDate}</td>
+													<td>${saleList[status.index].fullName}</td>
+													<td>${shipList[status.index].fullName}</td>
 													<td>${lis.total}</td>
 													<c:if test="${lis.status=='Success'}">
 														<th style="color: #1d8cf8">${lis.status}</th>
 													</c:if>
-													
-													<%-- <th><input class="btn btn-primary  btn-sm"
-														value="${lis.status}" style="width: 40%"></th> --%>
-													<td><a href="/Laptop/shipper/detailorder?id=${lis.id}"><i
+													<c:if test="${lis.status=='Reject'}">
+															<th style="color: red">${lis.status}</th>
+													</c:if>
+													<td><a href="/Laptop/admin/historydetail?id=${lis.id}"><i
 															class="tim-icons icon-zoom-split"></i></a></td>
 													<%-- <c:if test="${lis.status == true}">
 																<i class="tim-icons icon-check-2"></i>
@@ -149,7 +153,7 @@
 												</td>
 												
 												<td>
-													<a href="/Laptop/shipper/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
+													<a href="/Laptop/admin/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>
 												</td> --%>
 												</tr>
 											</c:forEach>
@@ -165,31 +169,31 @@
 									<c:if test="${numberPage == 1}">
 
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=1">1</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=1">1</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=2">2</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=2">2</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage+1}">Next</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=${numberPage+1}">Next</a></li>
 									</c:if>
 
 									<c:if test="${numberPage == maxPageId}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage-1}">Prev</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=${numberPage-1}">Prev</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=1">1</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=1">1</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=2">2</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=2">2</a></li>
 									</c:if>
 
 									<c:if test="${numberPage > 1 && numberPage < maxPageId}">
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage-1}">Prev</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=${numberPage-1}">Prev</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=1">1</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=1">1</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=2">2</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=2">2</a></li>
 										<li class="page-item"><a class="page-link"
-											href="<%=request.getContextPath()%>/shipper/history?page=${numberPage+1}">Next</a></li>
+											href="<%=request.getContextPath()%>/admin/history?page=${numberPage+1}">Next</a></li>
 									</c:if>
 								</ul>
 
@@ -202,9 +206,7 @@
 					</div>
 				</div>
 			</div>
-			<!--Begin footer -->
-			<jsp:include page="Footer.jsp" />
-			<!-- End Footer -->
+		
 		</div>
 	</div>
 
