@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>Edit User</title>
+<title>Product</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -187,7 +187,6 @@ if(session.getAttribute("USERMODEL")!=null) {
 				</div>
 			</div>
 			<!--Begin footer -->
-			<jsp:include page="Footer.jsp" />
 			<!-- End Footer -->
 		</div>
 	</div>
@@ -197,18 +196,19 @@ if(session.getAttribute("USERMODEL")!=null) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New product</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; margin: auto">New product</h5>
       </div>
       <div class="modal-body">
         <form method = "GET" action="<%=request.getContextPath()%>/admin/CreateProduct">
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Name product:</label>
+            <label for="recipient-name" class="col-form-label">Name:</label>
             <input type="text" name="nameOfProduct" class="btn btn-success" />
           </div>
 	          <div class="form-group">
+	                      <label for="recipient-name" class="col-form-label">Manufacturer:</label>
 	          
 					<select class="btn btn-success" id="inlineFormCustomSelect" name="item">
-			        <option value="selected">Choose......................................</option>
+			        <option value="selected">Choose</option>
 			        <c:forEach items="${listt}" var="lis">
 			        <option value="${lis.id}" name=""> ${lis.name} </option>
 			        </c:forEach>
@@ -216,8 +216,11 @@ if(session.getAttribute("USERMODEL")!=null) {
 			        	
 			        
 			  </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  <div style="text-align: right">
         <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+        </div>
         </form> 
       </div>
       <div class="modal-footer">

@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>Edit User</title>
+<title>Category</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800"
@@ -84,7 +84,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 							</div>
 							
 							<div class="card-header">
-								<h4 class="card-title">List of products</h4>
+								<h4 class="card-title">Category</h4>
 							</div>
 							
 							<div class="card-body">
@@ -115,7 +115,6 @@ if(session.getAttribute("USERMODEL")!=null) {
 				</div>
 			</div>
 			<!--Begin footer -->
-			<jsp:include page="Footer.jsp" />
 			<!-- End Footer -->
 		</div>
 	</div>
@@ -154,16 +153,19 @@ if(session.getAttribute("USERMODEL")!=null) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Thể loại mới</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 25px; margin: auto">New Category</h5>
       </div>
       <div class="modal-body">
         <form method="GET" action="<%=request.getContextPath()%>/admin/CreateCategory">
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Tên thể loại:</label>
-            <input type="text" name="category" class="btn btn-primary">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" name="category" class="btn btn-success">
           </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <div style="text-align: right">
         <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+        </div>
         </form>
       </div>
       <div class="modal-footer">

@@ -149,8 +149,8 @@ if(session.getAttribute("USERMODEL")!=null) {
 				              </div>
 							</div> 
                   
-                  <div class="card-footer">
-                <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                  <div class="card-footer" style="text-align: right">
+                <button type="submit" class="btn btn-fill btn-warning">Save</button>
                  <c:if test="${myUser.active == 1}">
                 <a class="btn btn-fill btn-info" href="<%=request.getContextPath()%>/admin/UpdateActiveOfUser?id=${myUser.id}&active=true"> Lock </a>
                 </c:if>
@@ -213,7 +213,6 @@ if(session.getAttribute("USERMODEL")!=null) {
         </div>
       </div>
 			<!--Begin footer -->
-			<jsp:include page="Footer.jsp" />
 			<!-- End Footer -->
 			
 			

@@ -209,7 +209,6 @@ if(session.getAttribute("USERMODEL")!=null) {
 				</div>
 			</div>
 			<!--Begin footer -->
-			<jsp:include page="Footer.jsp" />
 			<!-- End Footer -->
 		</div>
 	</div>

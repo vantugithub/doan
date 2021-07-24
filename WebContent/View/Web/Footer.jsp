@@ -34,8 +34,7 @@
 
 				<div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
 					<ul class="fh5co-footer-links">
-						<li><a href="#">About</a></li>
-					<li><a href="#">FAQ</a></li>
+						<p class="title-infor">CONTACT</p>
 					<li><a href="#">Shopping/Pick Up</a></li>
 					<li><a href="#">Store Policy</a></li>
 					<li><a href="#">Contact Me</a></li>

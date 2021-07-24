@@ -23,7 +23,7 @@
 				
 				<div class="col-md-4 col-xs-4 text-center menu-1">
 					<ul>
-						<li><a href="#">About</a></li>
+						<li><a href="/Laptop/About">About</a></li>
 						<li class="has-dropdown">
 							<a href="#">Laptop</a>
 							<ul class="dropdown">
@@ -33,7 +33,7 @@
 							
 							</ul>
 						</li>
-						<li><a href="#">Contact</a></li>
+						<li><a href="/Laptop/Policy">POLICY</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 col-xs-4 text-right hidden-xs menu-2">

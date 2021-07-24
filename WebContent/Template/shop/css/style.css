@@ -880,6 +880,42 @@ h1, h2, h3, h4, h5, h6, figure {
 .product-carousel {
   margin-bottom: 7em;
 }
+.li-about{
+	margin-right: 90px
+}
+.about {
+	width: 70px;
+	height: 90px;
+}
+.policy {
+	background-color: #fff;
+    color: #828282;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.625;
+}
+
+
+.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}
 
 .fh5co-tabs .fh5co-tab-nav {
   clear: both;
