@@ -66,6 +66,8 @@
 
 	if (session.getAttribute("cart") == null)
 		response.sendRedirect("/Laptop/");
+	if (session.getAttribute("USERMODEL") == null)
+		response.sendRedirect("/Laptop/Login");
 	%>
 	<jsp:include page="Header.jsp" />
 
