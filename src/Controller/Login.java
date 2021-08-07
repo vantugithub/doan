@@ -25,6 +25,8 @@ public class Login extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String referrer = request.getHeader("Referer");
+		request.getSession(false).setAttribute("url_prior_login", referrer);
 		RequestDispatcher rd = request.getRequestDispatcher("View/Login.jsp");
 		rd.forward(request, response);
 	}
@@ -34,6 +36,9 @@ public class Login extends HttpServlet {
 		{
 			request.setCharacterEncoding("UTF-8");
 		}
+		
+		
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		MyUser myUser2 = new MyUser();
@@ -67,7 +72,7 @@ public class Login extends HttpServlet {
 					response.sendRedirect(request.getContextPath()+"/shipper");
 				}
 				else if(nameRole.equals("ROLE_USER")) {
-					response.sendRedirect(request.getContextPath()+"/");
+					response.sendRedirect((String) request.getSession(false).getAttribute("url_prior_login"));
 				}
 				else {
 					response.sendRedirect(request.getContextPath()+"/Login");

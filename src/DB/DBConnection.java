@@ -7,7 +7,7 @@ public class DBConnection {
 	public static Connection creatConnection () {
 
 		Connection conn = null;
-		String url="jdbc:mysql://localhost:3306/lap";
+		String url="jdbc:mysql://localhost:3306/db_laptop";
 		String username = "root";
 		String password= "1111";
 
