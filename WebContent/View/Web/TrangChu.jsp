@@ -22,6 +22,7 @@
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="Template/shop/css/style.css">
+	<link rel="stylesheet" href="Template/shop/css/vuong.css">
 
 	<!-- Modernizr JS -->
 	<script src="Template/shop/js/modernizr-2.6.2.min.js"></script>
@@ -118,7 +119,7 @@
 				<div class="col-md-4 text-center animate-box" >
 					<div class="product" >
 					<a href="<%=request.getContextPath()%>/lap?name=${lis.name}">
-					<div class="product-grid" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">
+					<div class="product-grid khoi3" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">
 							
 						</div>
 					</a>
