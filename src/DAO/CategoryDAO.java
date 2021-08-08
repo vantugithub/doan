@@ -31,6 +31,8 @@ public class CategoryDAO {
 		return list;
 	}
 	
+	
+	
 	public static int deleteCategoryById(Connection conn,long id) {
 		String sql = "DELETE FROM catalogs WHERE Id = ?";
 		try {

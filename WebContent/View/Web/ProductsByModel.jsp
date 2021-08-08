@@ -37,15 +37,30 @@
 	<div id="page">
 	
 	<jsp:include page="Header.jsp"/>
-	<div id="fh5co-product">
+ 	<div id="fh5co-product" style="padding: 0">
+<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(Template/shop/images/wallpaper-cart.jpg); height: 80px">
+		<div class="overlay"></div>
 		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<div class="display-t">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn">
+							<h1 style="margin-top: -70px; font-size: 40px">${manuName }</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+		<div style="height: 120px"></div>
+ 		<div class="container">
 			<!-- <div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Products</h2>
 				</div>
 			</div> -->
-			<div class="row">
-				
+			
+			<div class="row">				
 				<c:forEach var="lis" items="${list}">
 			
 				<div class="col-md-4 text-center animate-box">

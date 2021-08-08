@@ -34,11 +34,24 @@ public class TrangChuForward extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		Connection conn = DBConnection.creatConnection();
-		List<Product>list = dao.getAllOfProducts(conn);
 		
-		request.setAttribute("list", list);
 		List<Category> listCategory = categoryDAO.getAllOfCategory(conn);
 		request.setAttribute("listCategory", listCategory);
+		
+		List<Product>list = dao.getMacbook(conn);
+		request.setAttribute("list", list);
+		
+		List<Product>listDell = dao.getDell(conn);
+		request.setAttribute("listDell", listDell);
+
+		List<Product>listAsus = dao.getAsus(conn);
+		request.setAttribute("listAsus", listAsus);
+		
+		List<Product>listLenovo = dao.getLenovo(conn);
+		request.setAttribute("listLenovo", listLenovo);
+		
+		List<Product>listHp = dao.getHp(conn);
+		request.setAttribute("listHp", listHp);
 		RequestDispatcher rd = request.getRequestDispatcher("View/Web/TrangChu.jsp");
 		rd.forward(request, response);
 	}

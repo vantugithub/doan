@@ -178,6 +178,7 @@ if(session.getAttribute("USERMODEL")!=null) {
                 <c:if test="${lis.status == false}">
                 	 <a class="btn btn-fill btn-light" href="/Laptop/admin/unlockproduct?status=false&id=${lis.id}"> Unlock </a>
                 </c:if>
+                <a class="btn btn-fill btn-danger" href="/Laptop/admin/descriptionproduct?id=${lis.id}">Description</a>
                 <a class="btn btn-fill btn-danger" href="/Laptop/admin/deleteproduct?id=${lis.id}"> Delete </a>
               </div>
                 </form>

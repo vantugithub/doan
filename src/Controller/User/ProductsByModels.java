@@ -35,6 +35,9 @@ public class ProductsByModels extends HttpServlet {
 		List<Category> listCategory = categoryDAO.getAllOfCategory(conn);
 		request.setAttribute("listCategory", listCategory);
 		request.setAttribute("list", list);
+		
+		String manuName = request.getParameter("brand");
+		request.setAttribute("manuName", manuName);
 		RequestDispatcher rd  = request.getRequestDispatcher("/View/Web/ProductsByModel.jsp");
 		rd.forward(request, response);
 	}

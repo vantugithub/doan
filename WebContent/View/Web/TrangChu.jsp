@@ -25,10 +25,12 @@
 	<link rel="stylesheet" href="Template/shop/css/vuong.css">
 
 	<!-- Modernizr JS -->
-	<script src="Template/shop/js/modernizr-2.6.2.min.js"></script>
-	
+<!-- 	<script src="Template/shop/js/modernizr-2.6.2.min.js"></script>
+ -->	
 	
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
 
 </head>
 <body>
@@ -105,48 +107,137 @@
 	
 	
 	<div id="fh5co-product" style="padding: 3em">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Products.</h2>
-<!-- 					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
- -->				</div>
-			</div>
-			<div class="row">
-				
-				<c:forEach var="lis" items="${list}">
+		<div class="container" style="width: 1200px">
 			
-				<div class="col-md-4 text-center animate-box" >
-					<div class="product" >
+			<h3 style="float: left; margin-right: 900px;">MACBOOK</h3>
+			<a href="<%=request.getContextPath()%>/Brands?brand=Macbook" style="font-size:17px">Xem chi tiết</a>
+			<hr>
+			<div class="row">
+				<ul class="autoplay">
+				<c:forEach var="lis" items="${list}">
+			<li>
+				<div class="col-md-12 text-center animate-box" >
+					<div class="product"  >
 					<a href="<%=request.getContextPath()%>/lap?name=${lis.name}">
-					<div class="product-grid khoi3" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">
-							
+					<div class="product-grid khoi3" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">	
 						</div>
 					</a>
-					
-					
-					<%-- <a href="<%=request.getContextPath()%>/lap?name=${lis.name}"> --%>
-						<%-- <img class="product-grid" src="<%=request.getContextPath()%>/image/${lis.image}">
-							<!-- <div class="inner">
-								<p>
-									<a href="single.html" class="icon"><i class="icon-shopping-cart"></i></a>
-									<a href="single.html" class="icon"><i class="icon-eye"></i></a>
-								</p>
-							</div> -->
-						</img> --%>
-					<!-- </a> -->
 						<div class="desc">
 							<h3><a href="<%=request.getContextPath()%>/lap?name=${lis.name}">${lis.name}</a></h3>
 							<span class="price">$${lis.price}</span>
 						</div>
 					</div>
 				</div>
-				
+				</li>
 				</c:forEach>
+				
+			</ul>
+			</div>
 			
+			<h3 style="float: left; margin-right: 950px;">ASUS</h3>
+			<a href="<%=request.getContextPath()%>/Brands?brand=Asus" style="font-size:17px">Xem chi tiết</a>
+			<hr>
+			<div class="row">
+				<ul class="autoplay">
+				<c:forEach var="lis" items="${listAsus}">
+			<li>
+				<div class="col-md-12 text-center animate-box" >
+					<div class="product"  >
+					<a href="<%=request.getContextPath()%>/lap?name=${lis.name}">
+					<div class="product-grid khoi3" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">	
+						</div>
+					</a>
+						<div class="desc">
+							<h3><a href="<%=request.getContextPath()%>/lap?name=${lis.name}">${lis.name}</a></h3>
+							<span class="price">$${lis.price}</span>
+						</div>
+					</div>
+				</div>
+				</li>
+				</c:forEach>
+				
+			</ul>
+			</div>
+			
+			<h3 style="float: left; margin-right: 950px;">DELL</h3>
+			<a href="<%=request.getContextPath()%>/Brands?brand=Dell" style="font-size:17px">Xem chi tiết</a>
+			<hr>
+			<div class="row">
+				<ul class="autoplay">
+				<c:forEach var="lis" items="${listDell}">
+			<li>
+				<div class="col-md-12 text-center animate-box" >
+					<div class="product"  >
+					<a href="<%=request.getContextPath()%>/lap?name=${lis.name}">
+					<div class="product-grid khoi3" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">	
+						</div>
+					</a>
+						<div class="desc">
+							<h3><a href="<%=request.getContextPath()%>/lap?name=${lis.name}">${lis.name}</a></h3>
+							<span class="price">$${lis.price}</span>
+						</div>
+					</div>
+				</div>
+				</li>
+				</c:forEach>
+				
+			</ul>
+			</div>
+			
+			
+			
+			<h3 style="float: left; margin-right: 920px;">LENOVO</h3>
+			<a href="<%=request.getContextPath()%>/Brands?brand=Lenovo" style="font-size:17px">Xem chi tiết</a>
+			<hr>
+			<div class="row">
+				<ul class="autoplay">
+				<c:forEach var="lis" items="${listLenovo}">
+			<li>
+				<div class="col-md-12 text-center animate-box" >
+					<div class="product"  >
+					<a href="<%=request.getContextPath()%>/lap?name=${lis.name}">
+					<div class="product-grid khoi3" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">	
+						</div>
+					</a>
+						<div class="desc">
+							<h3><a href="<%=request.getContextPath()%>/lap?name=${lis.name}">${lis.name}</a></h3>
+							<span class="price">$${lis.price}</span>
+						</div>
+					</div>
+				</div>
+				</li>
+				</c:forEach>
+				
+			</ul>
+			</div>
+			
+			<h3 style="float: left; margin-right: 990px;">HP</h3>
+			<a href="<%=request.getContextPath()%>/Brands?brand=Hp" style="font-size:17px">Xem chi tiết</a>
+			<hr>
+			<div class="row">
+				<ul class="autoplay">
+				<c:forEach var="lis" items="${listHp}">
+			<li>
+				<div class="col-md-12 text-center animate-box" >
+					<div class="product"  >
+					<a href="<%=request.getContextPath()%>/lap?name=${lis.name}">
+					<div class="product-grid khoi3" style="background-image:url(<%=request.getContextPath()%>/image/${lis.image});">	
+						</div>
+					</a>
+						<div class="desc">
+							<h3><a href="<%=request.getContextPath()%>/lap?name=${lis.name}">${lis.name}</a></h3>
+							<span class="price">$${lis.price}</span>
+						</div>
+					</div>
+				</div>
+				</li>
+				</c:forEach>
+				
+			</ul>
 			</div>
 		</div>
 	</div>
+	
 	<div id="fh5co-services" class="fh5co-bg-section" style="padding: 0em">
 		<div class="container">
 			<div class="row">
@@ -183,7 +274,7 @@
 			</div>
 		</div>
 	</div>
-	 <div id="fh5co-testimonial" class="fh5co-bg-section">
+	 <!-- <div id="fh5co-testimonial" class="fh5co-bg-section">
 		<div class="container">
 			<div class="row animate-box">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -192,7 +283,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
+				<div class="col-md-12 col-md-offset-1">
 					<div class="row animate-box">
 						<div class="owl-carousel owl-carousel-fullwidth">
 							<div class="item">
@@ -233,10 +324,10 @@
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>  -->
 	
 
-	<div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url(images/img_bg_5.jpg);">
+	<!-- <div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url(images/img_bg_5.jpg);">
 		<div class="container">
 			<div class="row">
 				<div class="display-t">
@@ -286,33 +377,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<!-- <div id="fh5co-started">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Newsletter</h2>
-					<p>Just stay tune for our latest Product. Now you can subscribe</p>
-				</div>
-			</div>
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2">
-					<form class="form-inline">
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<label for="email" class="sr-only">Email</label>
-								<input type="email" class="form-control" id="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-6">
-							<button type="submit" class="btn btn-default btn-block">Subscribe</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
 	</div> -->
+
+	
 
 	<jsp:include page="Footer.jsp"/>
 	
@@ -323,6 +390,22 @@
 	</div>
 	
 	<!-- jQuery -->
+	<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+	<script>
+	$('.autoplay').slick({
+		  slidesToShow: 3,
+		  slidesToScroll: 1,
+ 		  variableWidth: true,
+ 		  autoplay: true,
+		  autoplaySpeed: 1800,
+		  prevArrow: false,
+		  nextArrow: false,
+		});
+	</script>
 	<script src="Template/shop/js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
 	<script src="Template/shop/js/jquery.easing.1.3.js"></script>

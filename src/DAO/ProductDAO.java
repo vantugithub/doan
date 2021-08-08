@@ -85,7 +85,210 @@ public class ProductDAO {
 		return list;
 	}
 	
+	public static List<Product> getMacbook(Connection conn){
+		String sql2 = "SELECT Id FROM catalogs WHERE Name LIKE 'Macbook'";
+		int Id = 0;
+		try {
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps2.executeQuery();
+			while(rs2.next()) {
+			Id = rs2.getInt(1);
+			}
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		List<Product> list = new ArrayList<Product>();
+		String sql = "SELECT * FROM products WHERE CatalogId =" + Id + " LIMIT 6 ";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getLong("Id"));
+				product.setName(rs.getString("Name"));
+				product.setDescription(rs.getString("Content"));
+				product.setContent(rs.getString("Description"));
+				product.setPrice(rs.getLong("Price"));
+				product.setPromotionPrice(rs.getLong("PromotionPrice"));
+				product.setImage(rs.getString("Image"));
+				product.setImageList(rs.getString("ImageList"));
+				product.setWarranty( rs.getInt("Warranty"));
+				product.setStatus(rs.getBoolean("Status"));
+				list.add(product);
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
+	public static List<Product> getDell(Connection conn){
+		String sql2 = "SELECT Id FROM catalogs WHERE Name LIKE 'Dell'";
+		int Id = 0;
+		try {
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps2.executeQuery();
+			while(rs2.next()) {
+			Id = rs2.getInt(1);
+			}
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		List<Product> list = new ArrayList<Product>();
+		String sql = "SELECT * FROM products WHERE CatalogId =" + Id + " LIMIT 6 ";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getLong("Id"));
+				product.setName(rs.getString("Name"));
+				product.setDescription(rs.getString("Content"));
+				product.setContent(rs.getString("Description"));
+				product.setPrice(rs.getLong("Price"));
+				product.setPromotionPrice(rs.getLong("PromotionPrice"));
+				product.setImage(rs.getString("Image"));
+				product.setImageList(rs.getString("ImageList"));
+				product.setWarranty( rs.getInt("Warranty"));
+				product.setStatus(rs.getBoolean("Status"));
+				list.add(product);
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public static List<Product> getAsus(Connection conn){
+		String sql2 = "SELECT Id FROM catalogs WHERE Name LIKE 'Asus'";
+		int Id = 0;
+		try {
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps2.executeQuery();
+			while(rs2.next()) {
+			Id = rs2.getInt(1);
+			}
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		List<Product> list = new ArrayList<Product>();
+		String sql = "SELECT * FROM products WHERE CatalogId =" + Id + " LIMIT 6 ";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getLong("Id"));
+				product.setName(rs.getString("Name"));
+				product.setDescription(rs.getString("Content"));
+				product.setContent(rs.getString("Description"));
+				product.setPrice(rs.getLong("Price"));
+				product.setPromotionPrice(rs.getLong("PromotionPrice"));
+				product.setImage(rs.getString("Image"));
+				product.setImageList(rs.getString("ImageList"));
+				product.setWarranty( rs.getInt("Warranty"));
+				product.setStatus(rs.getBoolean("Status"));
+				list.add(product);
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public static List<Product> getLenovo(Connection conn){
+		String sql2 = "SELECT Id FROM catalogs WHERE Name LIKE 'Lenovo'";
+		int Id = 0;
+		try {
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps2.executeQuery();
+			while(rs2.next()) {
+			Id = rs2.getInt(1);
+			}
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		List<Product> list = new ArrayList<Product>();
+		String sql = "SELECT * FROM products WHERE CatalogId =" + Id + " LIMIT 6 ";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getLong("Id"));
+				product.setName(rs.getString("Name"));
+				product.setDescription(rs.getString("Content"));
+				product.setContent(rs.getString("Description"));
+				product.setPrice(rs.getLong("Price"));
+				product.setPromotionPrice(rs.getLong("PromotionPrice"));
+				product.setImage(rs.getString("Image"));
+				product.setImageList(rs.getString("ImageList"));
+				product.setWarranty( rs.getInt("Warranty"));
+				product.setStatus(rs.getBoolean("Status"));
+				list.add(product);
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public static List<Product> getHp(Connection conn){
+		String sql2 = "SELECT Id FROM catalogs WHERE Name LIKE 'Hp'";
+		int Id = 0;
+		try {
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			ResultSet rs2 = ps2.executeQuery();
+			while(rs2.next()) {
+			Id = rs2.getInt(1);
+			}
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		List<Product> list = new ArrayList<Product>();
+		String sql = "SELECT * FROM products WHERE CatalogId =" + Id + " LIMIT 6 ";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getLong("Id"));
+				product.setName(rs.getString("Name"));
+				product.setDescription(rs.getString("Content"));
+				product.setContent(rs.getString("Description"));
+				product.setPrice(rs.getLong("Price"));
+				product.setPromotionPrice(rs.getLong("PromotionPrice"));
+				product.setImage(rs.getString("Image"));
+				product.setImageList(rs.getString("ImageList"));
+				product.setWarranty( rs.getInt("Warranty"));
+				product.setStatus(rs.getBoolean("Status"));
+				list.add(product);
+			}
+			
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	public static List<Product> findProductById(Connection conn,long id){
 		List<Product> list = new ArrayList<Product>();
 		String sql = "SELECT * FROM products WHERE Id = ?";
