@@ -75,15 +75,24 @@ public class Login extends HttpServlet {
 					response.sendRedirect((String) request.getSession(false).getAttribute("url_prior_login"));
 				}
 				else {
-					response.sendRedirect(request.getContextPath()+"/Login");
+//					response.sendRedirect(request.getContextPath()+"/Login");
+					RequestDispatcher rd = request.getRequestDispatcher("View/Login.jsp");
+					request.setAttribute("mess", "Username or password is incorrect. Try again");
+					rd.forward(request, response);
 				}
 			}
 			else {
-				response.sendRedirect(request.getContextPath()+"/Login");
+//				response.sendRedirect(request.getContextPath()+"/Login");
+				RequestDispatcher rd = request.getRequestDispatcher("View/Login.jsp");
+				request.setAttribute("mess", "Username or password is incorrect. Try again");
+				rd.forward(request, response);
 			}
 		}
 		else {
-			response.sendRedirect(request.getContextPath()+"/Login");
+//			response.sendRedirect(request.getContextPath()+"/Login");
+			RequestDispatcher rd = request.getRequestDispatcher("View/Login.jsp");
+			request.setAttribute("mess", "Username or password is incorrect. Try again");
+			rd.forward(request, response);
 		}
 	}
 }

@@ -22,8 +22,6 @@ response.setHeader("Cache-Control","no-store");
 response.setHeader("Pragma","no-cache");
 response.setDateHeader ("Expires", 0);
 
-/* if(session.getAttribute("USERMODEL")==null)
-    response.sendRedirect("/Laptop/Login"); */
     
 if(session.getAttribute("USERMODEL")!=null) {
 	MyUser myUser =(MyUser) session.getAttribute("USERMODEL");
@@ -51,7 +49,7 @@ if(session.getAttribute("USERMODEL")!=null) {
                     </div>
                     <div class="signin-form">
                         <h2 class="form-title">Sign in</h2>
-                        <h4><%=request.getAttribute("mess") != null ? request.getAttribute("mess") : ""%></h4>
+                        <h4 style="color: red;"><%=request.getAttribute("mess") != null ? request.getAttribute("mess") : ""%></h4>
                         <form method="POST" class="register-form" id="login-form" action="Login" style="text-algin: center">
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
