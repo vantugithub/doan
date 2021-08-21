@@ -10,6 +10,8 @@
 * 	Template Style 
 *
 * ======================================================= */
+#moree {display: none;}
+
 body {
   font-family: "Playfair Display", serif;
   font-weight: 400;
@@ -478,7 +480,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 .fh5co-cover.fh5co-cover-sm .display-t,
 .fh5co-cover.fh5co-cover-sm .display-tc {
-  height: 158px;
+  height: 80px;
   display: table;
   width: 100%;
 }

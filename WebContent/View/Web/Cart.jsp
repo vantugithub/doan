@@ -76,8 +76,9 @@
                         <tr>
                             <th scope="col"> </th>
                             <th scope="col">Product</th>
+                            <th scope="col">Price</th>
                             <th scope="col" id="quantity" class="text-center">Quantity</th>
-                            <th scope="col" id="price" class="text-right">Price</th>
+                            <th scope="col" id="price" class="text-right">Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -88,9 +89,9 @@
                         <tr>
                             <td><img class="custom-image" src="<%=request.getContextPath()%>/image/${lis.product.image}" /> </td>
                             <td>${lis.product.name}</td>
-                            
+                            <td id="priceProduct_${lis.product.id}">$${lis.product.price}</td>
                             <td><input onchange="updateCart(${lis.product.id})" id="id=${lis.product.id}" class="number" type="text"pattern="[0-9]*" value="${lis.quantity}" /></td>
-                            <td class="text-right">${lis.product.price}$</td>
+                            <td  id="totalPriceProduct_${lis.product.id}" class="text-right">$${lis.product.price*lis.quantity}</td>
                             <td class="text-right"><button class="btn btn-sm btn-danger" onclick="deleteProduct(${lis.product.id})"><i class="fa fa-trash"></i> </button> </td>
                         </tr>
                      </c:forEach>
@@ -107,8 +108,7 @@
 		   
 		
 				<c:if test="${list.size()>0}">
-				<div style="text-align: right">Total: <fmt:formatNumber type="number" maxFractionDigits="3"
-					value="${s}" /></div>
+				
 				<div >
 				
 					<form action="${pageContext.request.contextPath}/checkout?total=${s}"
@@ -135,13 +135,30 @@
 	
 	
 	<script type="text/javascript">
+	
+		function updatePriceForProduct(idProduct){
+
+			var quantityProduct = document.getElementById('id='+idProduct).value;
+			var priceProductText = document.getElementById('priceProduct_'+idProduct).innerHTML.replace('$','');
+			var price = Number(priceProductText);
+			var total_price = price*quantityProduct;
+			 document.getElementById('totalPriceProduct_'+idProduct).innerHTML ="$"+ total_price;
+		}
+		
+		function updateTotalPrice()
+		{
+						
+		}
+		
+		
 		
 		function updateCart(idProduct) {
 			var quantityProduct = document.getElementById('id='+idProduct).value;
-				
+			
 				var xhttp;
 				var url = "/Laptop/updatecart?idProduct="+idProduct+"&quantityProduct="+quantityProduct;
 				var quantity = parseInt(document.getElementById("quantity"));
+				updatePriceForProduct(idProduct);
 				/* document.getElementById("price").innerHTML = quantity  */
 				if (window.XMLHttpRequest) {
 					xhttp = new XMLHttpRequest();

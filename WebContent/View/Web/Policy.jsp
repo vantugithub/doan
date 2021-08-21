@@ -60,34 +60,34 @@
 				Online Shopping Terms and Conditions may change from time to time
 				without prior notice, at our discretion.
 			</p>
-			<br>
-			<p>	
+				<p>
 				 Please make sure you have
 				read our Website Privacy Policy and Terms and Conditions related to
 				the use of this Website.
-				</p><br>
+				</p>
 				<p>
 				 This website is owned and operated by
 				Online Therapy Institute in conjunction with its subsidiaries and
 				their affiliates. All
 				orders and purchases made through the facilities of this website
 				shall be subject to these Online Shopping Terms and Conditions.
-				</p><br>
+				</p>
 				<p>
 				These Online Shopping Terms and Conditions, the use of this website
 				and any order or purchase made through the facilities of this
 				website shall be governed by the laws of the province of the United
 				Kingdom and the laws of the United Kingdom applicable therein.
-				</p><br>
+				</p>
 				<p>
 				 You
 				may only purchase or order items for non-commercial and lawful
 				purposes and any other use is not permitted. You agree to pay for
 				all charges noted herein as payable by you. You have to be 18 or
 				older to purchase from the website.
-				</p><br>
-				
-				<p>
+				</p>
+				<div id="dots">...</div>
+					<div id="moree">
+					<p>
 				 All prices listed on
 				this website are subject to confirmation. OTI will notify you by
 				e-mail within hours of making a purchase if the confirmed price of
@@ -98,7 +98,7 @@
 				notification, the sale will be automatically terminated unless you
 				reply by e-mail with confirmation of your intention to purchase the
 				item at the confirmed price.
-				</p><br>
+				</p>
 				<p>
 				 OTI reserves the right to limit the
 				quantities of certain items which an individual or any group can
@@ -106,13 +106,12 @@
 				items as quickly as possible and within any time periods indicated;
 				however, OTI will not be responsible for any delays in delivery
 				which are beyond its control. Where delivery is delayed, OTI will
-				notify you as soon as possible.</p><br>
+				notify you as soon as possible.</p>
 			<h3>Refunds and Cancellations</h3>
 			<p>Generally, orders for services may be cancelled for a full
 				refund within 24 hours provided the online training course has not
 				been accessed or the application for a particular service is not
 				already in review.</p>
-			<br>
 			<p>Once you purchase a course you are given complete access to
 				all the course lessons. Our system tracks logins and access to each
 				lesson. Unfortunately we have had to make a firm rule about refunds
@@ -122,14 +121,16 @@
 				what you had anticipated and this is within the first 30 days of
 				purchase, a refund will be considered provided no other content has
 				been accessed.</p>
-			<br>
 			<p>If a course requires an application to be enrolled in the
 				course, the application must be received within 30 days. If the
 				application is not received within 30 days, a refund will be given
 				minus a 10% of total price administration fee.</p>
-			<br>
 			<p>Once the application is received and a student is enrolled in
 				the course, no refunds will be given.,</p>
+				
+				
+					</div>
+				<button onclick="myFunction()" id="myBtn" class="btn">Read more</button>
 		</div>
 	</div>
 
@@ -138,47 +139,20 @@
 	
 	<script type="text/javascript">
 		
-		function updateCart(idProduct) {
-			var quantityProduct = document.getElementById('id='+idProduct).value;
-				
-				var xhttp;
-				var url = "/Laptop/updatecart?idProduct="+idProduct+"&quantityProduct="+quantityProduct;
-				var quantity = parseInt(document.getElementById("quantity"));
-				/* document.getElementById("price").innerHTML = quantity  */
-				if (window.XMLHttpRequest) {
-					xhttp = new XMLHttpRequest();
-				} else {
-					xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				}
+	function myFunction() {
+		  var dots = document.getElementById("dots");
+		  var moreText = document.getElementById("moree");
+		  var btnText = document.getElementById("myBtn");
 
-				xhttp.onreadystatechange = function() {
-					if (xhttp.readyState == 4) {
-						var data = xhttp.responseText;
-						/* document.getElementById("users").innerHTML = data; */
-					}
-				}
-				xhttp.open("POST", url, true);
-				xhttp.send();
-		}
-		
-		function deleteProduct(idProduct) {
-				var xhttp;
-				var url = "/Laptop/deleteproduct?idProduct="+idProduct;
-				
-				if (window.XMLHttpRequest) {
-					xhttp = new XMLHttpRequest();
-				} else {
-					xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				}
-
-				xhttp.onreadystatechange = function() {
-					if (xhttp.readyState == 4) {
-						var data = xhttp.responseText;
-						document.getElementById("listProduct").innerHTML = data; 
-					}
-				}
-				xhttp.open("POST", url, true);
-				xhttp.send();
+		  if (dots.style.display === "none") {
+		    dots.style.display = "inline";
+		    btnText.innerHTML = "Read more";
+		    moreText.style.display = "none";
+		  } else {
+		    dots.style.display = "none";
+		    btnText.innerHTML = "Read less";
+		    moreText.style.display = "inline";
+		  }
 		}
 	
 		</script>

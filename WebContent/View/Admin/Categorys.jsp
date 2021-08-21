@@ -140,7 +140,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 			  </div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save</button>
-        </form> 
+        </form>
       </div>
       <div class="modal-footer">
       </div>

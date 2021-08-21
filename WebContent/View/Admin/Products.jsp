@@ -118,6 +118,7 @@ if(session.getAttribute("USERMODEL")!=null) {
 												<th>Price</th>
 												<th>Status</th>
 												<th>Edit</th>
+												<th>Multi image</th>
 												<th>Description</th>
 											</tr>
 										</thead>
@@ -141,6 +142,9 @@ if(session.getAttribute("USERMODEL")!=null) {
 												
 												<td>
 													<a href="/Laptop/admin/detailproduct?id=${lis.id}"><i class="tim-icons icon-gift-2" ></i></a>
+												</td>
+												<td>
+													<a href="/Laptop/admin/addimages?id=${lis.id}"><i class="tim-icons icon-image-02" ></i></a>
 												</td>
 												<td>
 													<a href="/Laptop/admin/descriptionproduct?id=${lis.id}"><i class="tim-icons icon-pencil"></i></a>

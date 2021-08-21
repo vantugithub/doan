@@ -34,7 +34,12 @@ public class DetailProduct extends HttpServlet {
 		Connection conn = DBConnection.creatConnection();
 		 List<Category> listCategory = categoryDAO.getAllOfCategory(conn);
 			request.setAttribute("listCategory", listCategory);
+		
 		Product product = dao.getProductByName(conn, nameOfProduct);
+		String imageListProduct = dao.getImageListProductById(conn, product.getId());
+		
+		String []  listImage = imageListProduct.split(";");
+		request.setAttribute("listImage", listImage);
 		request.setAttribute("product", product);
 		request.setAttribute("nTagInDatabase","\n");
 		request.setAttribute("brTagInHtml","<br/>");

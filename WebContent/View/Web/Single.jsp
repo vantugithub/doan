@@ -40,21 +40,35 @@
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1 animate-box">
 					<div class="owl-carousel owl-carousel-fullwidth product-carousel">
-						<div class="item">
+					
+						 <div class="item">
 							<div class="active text-center">
 								<figure>
 									<img src="<%=request.getContextPath()%>/image/${product.image}" alt="user">
 								</figure>
 							</div>
+						</div> 
+						
+					<c:forEach var="lis" items="${listImage}">
+				
+					<div class="item" >
+							<div class="active text-center" >
+								<figure>
+									<img src="<%=request.getContextPath()%>/image/${lis}" alt="user">
+								</figure>
+							</div>
 						</div>
 						
-						<div class="item">
-							<!-- <div class="active text-center">
+					</c:forEach>
+						
+						
+						<!-- <div class="item">
+							<div class="active text-center">
 								<figure>
 									<img src="Template/shop/images/product-single-5.jpg" alt="user">
 								</figure>
-							</div> -->
-						</div>
+							</div>
+						</div> -->
 					</div>
 					<div class="row animate-box">
 						<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
@@ -120,6 +134,8 @@
 									</ul>
 								</div>
 							</div>
+							
+							
 
 							<!-- <div class="fh5co-tab-content tab-content" data-tab-content="3">
 								<div class="col-md-10 col-md-offset-1">
@@ -158,7 +174,15 @@
 
 					</div>
 				</div>
+				
 			</div>
+			<div class="row animate-box">
+						<div class="">
+							<p>
+								<a href="/Laptop" style="color:blue;" class="">See more</a>
+							</p>
+						</div>
+						</div>
 		</div>
 	</div>
 	<jsp:include page="Footer.jsp"/>
@@ -184,7 +208,6 @@
 				xhttp.open("GET", url, true);
 				xhttp.send();
 		}
-	
 		</script>
 	
 	</div>

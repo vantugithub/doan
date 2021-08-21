@@ -38,22 +38,24 @@
 	
 	<jsp:include page="Header.jsp"/>
  	<div id="fh5co-product" style="padding: 0">
-	<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(Template/shop/images/wallpaper-cart.jpg); height: 80px">
-		<div class="overlay"></div>
+<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url(Template/shop/images/wallpaper-cart.jpg); height: 80px">
 		<div class="container">
-			<div class="row">
+			<div class="">
 				<div class="col-md-8 col-md-offset-2 text-center">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
-							<h1 style="font-size: 40px">${manuName}</h1>
+							<h1 style="font-size: 40px">Search results</h1>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
-		<div style="height: 120px"></div>
-		<div class="container">
+	
+		<div style="height: 120px">
+		
+				</div>
+						<div class="container">
 						<select id="sorting" class="btn" onchange="selectionChange()">
 						<option value="Sort By">Sort by price</option>
 					      <option value="Sort By Price low to high" id="price">Low to high</option>
@@ -61,11 +63,12 @@
 						</select>
 				</div>
 		
-		
  		<div class="container">
-			
-			
-			<div class="row sort_price">				
+ 		
+ 						
+						
+			<div class="row sort_price">
+							
 				<c:forEach var="lis" items="${list}">
 			
 				<div class="col-md-4 text-center animate-box temp_price">
@@ -77,7 +80,6 @@
 					</a>
 					
 					
-					
 						<div class="desc">
 							<h3><a href="<%=request.getContextPath()%>/lap?name=${lis.name}">${lis.name}</a></h3>
 							<span class="price">$${lis.price}</span>
@@ -86,8 +88,9 @@
 				</div>
 				
 				</c:forEach>
-				
 			</div>
+			
+			
 		</div>
 	</div>
 
@@ -180,5 +183,10 @@
 	<script src="Template/shop/js/jquery.flexslider-min.js"></script>
 	<!-- Main -->
 	<script src="Template/shop/js/main.js"></script>
+	
+	
+	
+	
+	
 </body>
 </html>

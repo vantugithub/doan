@@ -14,7 +14,8 @@
 					<div class="alert alert-success" role="alert">
 							  Update Success
 			  			</div>
-					<%} else{
+					<%} else
+					{
 					%>
 					<%} %>
 						<ul>

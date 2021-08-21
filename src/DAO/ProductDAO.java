@@ -570,7 +570,7 @@ public class ProductDAO {
 		List<Product> list = new ArrayList<Product>();
 		String sql="SELECT products.Id,products.Name,products.Price,products.Image,MATCH (Name) "
 				+ "AGAINST (?) as score FROM products WHERE MATCH(Name) "
-				+ "AGAINST (? IN NATURAL LANGUAGE MODE) > 0.28 AND products.Status = 1 ORDER BY score DESC";
+				+ "AGAINST (? IN NATURAL LANGUAGE MODE) > 0.68 AND products.Status = 1 ORDER BY score DESC";
 		try {
 			
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -591,6 +591,48 @@ public class ProductDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public static int insertAllNameImages(Connection conn,Long id,String imageList) {
+		
+		try {
+				String sql = "UPDATE products SET ImageList = ? WHERE Id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setNString(1, imageList);
+			ps.setLong(2, id);
+			if(ps.executeUpdate()!=0) 
+			{
+				ps.close();
+			}
+			ps.close();
+		}
+		catch (Exception e) {
+			System.out.println(e.toString());
+			return 0;
+		}
+		return 1;
+	}
+	
+public static String getImageListProductById(Connection conn,Long id) {
+	
+	String result = "";
+	
+		try {
+			
+			String sql = "SELECT ImageList FROM products WHERE Id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				result += rs.getString("ImageList");
+			}
+			ps.close();
+			return result;
+		}
+		catch (Exception e) {
+			System.out.println(e.toString());
+			return result;
+		}
 	}
 	
 	
