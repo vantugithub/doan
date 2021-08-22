@@ -104,15 +104,20 @@
 			</div>
 
 			<div class="row form-group">
-				<div class="col-md-12"></div>
+				<div class="col-md-12" style="padding-left: 50%;">
+					<input type="submit" class="btn btn-success btn-outline"
+						value="Place Order">
+				
+				<a  href="/Laptop/Cart" class="btn btn-danger btn-outline">Cancel</a>
+				
+				</div>
 			</div>
 
 			<div>
 
-				<p style="text-align: center;">
-					<input type="submit" class="btn btn-success btn-outline"
-						value="Place Order" style="margin: 0 auto">
-				</p>
+				
+				
+					
 		</form>
 	</div>
 	</div>
@@ -177,7 +182,7 @@
 				<h1 class="jumbotron-heading">No products</h1>
 			</div>
 		</c:if>
-
+							
 	</div>
 	<script>
 if ( window.history.replaceState ) {
